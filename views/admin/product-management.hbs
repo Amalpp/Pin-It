@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    
+
+   <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></script>
+    <script  src="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+<section  class="main-content">
+    <div class="page-content">
+      <a href="/add-product" type="button " style="width: 14em; background-color: rgb(231, 231, 228);  " class="  form-control form-control-sm   float-end"  placeholder="button" aria-controls="example " > Add Product</a>
+       
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>size</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Discription</th>
+                <th>Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+                {{#each products}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{this.productname}}</td>
+                <td>{{this.size}}</td>
+                <td>{{this.category}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.discription}}</td>
+                <td> <img style="width: 50px; height:50px" src="product-image/{{this._id}}.jpg" alt=""></td>
+                <td><a href="/edit-product?id={{this._id}}" class="btn btn-primary" type="submit">Edit</a></td>
+                <td> <a href="/deleteProduct/{{this._id}}" class="btn btn-danger"
+                onclick="return confirm('are you want to delete{{this.productname}}?')" type="submit">delete</a>
+            </td>
+            </tr>
+        {{/each}}
+        </tbody>
+        
+    </table>
+
+
+</section>
+</body>
+ <script>
+
+     $(document).ready(function() {
+    $('#example').DataTable();
+} );
+ </script>
+</html>
