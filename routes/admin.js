@@ -136,7 +136,7 @@ router.get('/add-product' ,verifyLogin ,function(req,res){
 
 router.post('/add-product',verifyLogin , function(req,res){
   
-  
+  req.body.price= parseInt(req.body.price)
   productHelper.addProduct(req.body,(id)=>{
     console.log(req.body);
     let image=req.files.image

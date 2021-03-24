@@ -1,0 +1,205 @@
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description">Name</td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Sub Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each products}}
+						<tr>
+						
+							<td class="cart_product">
+								<a href=""><img src="/product-image/{{this.products ._id}}.jpg" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{this.products.productname}}</a></h4>
+								 
+							</td>
+								
+
+
+							<td class="cart_price">
+								<p id="{{this.products._id}}price">{{this.products.price}}</p>
+							</td>
+						
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<button class="cart_quantity_up" onclick="changeQuantity('{{this._id}}','{{../user._id}}','{{this.products._id}}',-1)">-</button>
+							<span name="quantity" id="{{this.products._id}}"  >{{this.quantity}}</span>
+									<button class="cart_quantity_up" onclick="changeQuantity('{{this._id}}','{{../user._id}}','{{this.products._id}}',1)"> + </button>
+								</div>
+							</td>
+							<td class="cart_total">
+							 <span id="{{this.products._id}}sub">{{this.subtotal}}</span>
+							</td>
+							<td class="cart_delete">
+								<button type="button" onclick="deleteCartProduct('{{this._id}}','{{this.products._id}}')" class="btn btn-danger">Remove</button>
+							</td>
+						</tr>
+						
+						
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+	
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<input type="checkbox">
+								<label>Use Coupon Code</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Use Gift Voucher</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Estimate Shipping & Taxes</label>
+							</li>
+						</ul>
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Country:</label>
+								<select>
+									<option>United States</option>
+									<option>Bangladesh</option>
+									<option>UK</option>
+									<option>India</option>
+									<option>Pakistan</option>
+									<option>Ucrane</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+								
+							</li>
+							<li class="single_field">
+								<label>Region / State:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+							
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+						<a class="btn btn-default update" href="">Get Quotes</a>
+						<a class="btn btn-default check_out" href="">Continue</a>
+					</div>
+				</div>
+					{{#each products}}
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span id="{{this.products._id}}">{{this.subtotal}}</span></li>
+							{{!-- <li>Eco Tax <span>RS:20</span></li>
+							<li>Shipping Cost <span>Free</span></li> --}}
+							<li>Total <span id="total">{{../total}}</span></li>
+						</ul>
+							<a class="btn btn-default update" href="">Update</a>
+							<a class="btn btn-default check_out" href="/place-order">Check Out</a>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+
+	<script>
+
+		function changeQuantity(cartId,userId,proId,count,proName){
+			let quantity= parseInt(document.getElementById(proId).innerHTML)
+			let price=parseInt(document.getElementById(proId+"price").innerHTML)
+						let sub=parseInt(document.getElementById(proId+"sub").innerHTML)
+
+
+			count=parseInt(count)
+			
+
+			$.ajax({
+				url:'/change-product-quantity',
+				data:{
+					cart:cartId,
+					product:proId,
+					user:userId,
+					count:count,
+					quantity:quantity
+				},
+				method:'post',	
+				success:(response)=>{
+					if(response.removeProduct){
+						alert('Product Removed from cart')
+						location.reload()
+					}else{
+
+						document.getElementById(proId).innerHTML=quantity+count
+						 document.getElementById('total').innerHTML=response.total
+						if(count ==1){
+							document.getElementById(proId+'sub').innerHTML=sub+price
+						}if(count==-1){
+							document.getElementById(proId+'sub').innerHTML=sub-price
+
+						}
+                         
+
+					}
+
+
+				}
+			})
+		}
+	</script>
+	<script>
+    function deleteCartProduct(cartId,proId){
+	console.log('caart',cartId)
+       console.log('delete')
+        $.ajax({
+            url:'/deleteCartProduct',
+            data:{
+                cart:cartId,
+                product:proId
+            },
+            method:'post',
+            success:(response)=>{
+                if(response.removeProduct){
+                alert("Product removed from Cart")
+                location.reload()
+                }
+            }
+        })
+    }
+</script>
+ 
+

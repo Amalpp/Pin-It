@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+
+        body {
+            background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #262626;
+            margin: 5% 0;
+        }
+
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+
+        .d-flex {
+            display: flex;
+            flex-direction: row;
+            background: #f6f6f6;
+            border-radius: 0 0 5px 5px;
+            padding: 25px;
+        }
+
+        form {
+            flex: 4;
+        }
+
+        .Yorder {
+            flex: 2;
+        }
+
+        .title {
+            background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #5195A8), color-stop(100, #70EAFF));
+            background: -moz-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
+            background: -ms-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
+            background: -o-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
+            background: linear-gradient(to bottom right, #5195A8 0%, #70EAFF 100%);
+            border-radius: 5px 5px 0 0;
+            padding: 20px;
+            color: #f6f6f6;
+        }
+
+        h2 {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        label,
+        table {
+            display: block;
+            margin: 15px;
+        }
+
+        label>span {
+            float: left;
+            width: 25%;
+            margin-top: 12px;
+            padding-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 70%;
+            height: 30px;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #dadada;
+            color: #888;
+        }
+
+        select {
+            width: 72%;
+            height: 45px;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+        }
+
+        .Yorder {
+            margin-top: 15px;
+            height: 600px;
+            padding: 20px;
+            border: 1px solid #dadada;
+        }
+
+        table {
+            margin: 0;
+            padding: 0;
+        }
+
+        th {
+            border-bottom: 1px solid #dadada;
+            padding: 10px 0;
+        }
+
+        tr>td:nth-child(1) {
+            text-align: left;
+            color: #2d2d2a;
+        }
+
+        tr>td:nth-child(2) {
+            text-align: right;
+            color: #52ad9c;
+        }
+
+        td {
+            border-bottom: 1px solid #dadada;
+            padding: 25px 25px 25px 0;
+        }
+
+        p {
+            display: block;
+            color: #888;
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .Yorder>div {
+            padding: 15px 0;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            background: #52ad9c;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background: #428a7d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h2>Product Order Form</h2>
+        </div>
+        <div class="d-flex">
+            <form id="checkout-form" action="" method="">
+                <label>
+                    <span class="fname">First Name <span class="required">*</span></span>
+                    <input type="text" id="firstname" name="firstname">
+                </label>
+                <label>
+                    <span>Street Address <span class="required">*</span></span>
+                    <input type="text" id="address" name="address" placeholder="House number and street name" required>
+                </label>
+
+                <label>
+                    <span>Town / City <span class="required">*</span></span>
+                    <input type="text" id="city" name="city">
+                </label>
+                <label>
+                    <span>State / County <span class="required">*</span></span>
+                    <input type="text" id="state" name="state">
+                </label>
+                <label>
+                    <span>Postcode / ZIP <span class="required">*</span></span>
+                    <input type="text" id="pincode" name="pincode">
+                </label>
+                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+
+
+
+
+
+                <div class="col-md-6">
+                    {{#each address}}
+                    <div>
+                        <h3>address</h3>
+                        <p>{{this.details.firstname}} juhhjjhj<br>
+                            {{this.details.address}} <br>
+                            {{this.details.city}} <br>
+                            {{this.details.state}} <br>
+                            {{this.details.pincode}}</p>
+                        <button style="width:20em; background-color: #78d4ee;" type="submit" onclick="Passaddress('{{this.details.firstname}}',
+                                    '{{this.details.address}}',
+                                     '{{this.details.city}}',
+                                      '{{this.details.state}}',
+                                      '{{this.details.pincode}}')" class="btn btn-primary">
+                            use Adress</button>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="Yorder">
+                    <table>
+                        <tr>
+                            <td>Total</td>
+                            <td> {{total}}</td>
+                        </tr>
+                    </table><br>
+                    <div>
+                        <input type="radio" name="payment-method" value="COD" checked> COD
+                    </div>
+
+                    <div>
+                        <input type="radio" name="payment-method" value="ONLINE">Online payment
+
+                    </div>
+                    <div>
+                        <input type="radio" name="payment method" value="ONLINE"> Paypal <span>
+                            <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg"
+                                alt="" width="50">
+                        </span>
+
+                    </div>
+
+
+                    <a class="btn btn-info" href="/adress">Add new address</a>
+                    <button type="submit" class="btn btn-info float-right">sumbitt</button>
+
+                    {{!-- <a class="btn btn-info" href="">Place Order</button> --}}
+                </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function Passaddress(firstname, address, city, state, pincode) {
+        document.getElementById('firstname').value = firstname
+        document.getElementById('address').value = address
+        document.getElementById('city').value = city
+        document.getElementById('state').value = state
+        document.getElementById('pincode').value = pincode
+
+
+    }
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    $("#checkout-form").submit((e) => {
+        console.log("hiii")
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                alert(response)
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayPayment(response)
+
+                }
+            }
+        })
+    })
+    function  razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_0vH5oqVbjyHRrQ", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "BUY-HIGH",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+         var rzp1 = new Razorpay(options);
+    rzp1.open();
+    }
+   
+
+
+    function verifyPayment(payment,order){
+        $.ajax({
+            url:'/verify-payment',
+            data:{
+                payment,
+                order 
+            },
+            method:'post'
+        })
+    }
+</script>
+
+</html>

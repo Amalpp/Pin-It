@@ -21,6 +21,7 @@
     "mongod": "^2.0.0",
     "mongodb": "^3.6.4",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "razorpay": "^2.0.6"
   }
 }
