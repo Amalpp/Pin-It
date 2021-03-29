@@ -1,0 +1,62 @@
+
+
+
+
+<body>
+<section>
+    <div class="main-content p-5">
+        <div class="row">
+
+<form method="POST" action="/findReportbyDate">
+  <label>From Date</label>
+  <input type="date" id="fromDate" name="fromDate">
+  To Date  <input type="Date" id="toDate" name="toDate">
+  <button type="submit" id="button">search</button>
+</form>
+
+
+<table id="myTable" class="table table-striped" >  
+        <thead>  
+          <tr>  
+              <th style="font-weight: bolder;">Sl.No</th>  
+               <th style="font-weight: bolder;">Date</th>  
+            <th style="font-weight: bolder;">Order Id</th>  
+             <th style="font-weight: bolder;">status</th>  
+            <th style="font-weight: bolder;">Total Amount</th>  
+              
+            
+        
+
+            {{!-- <th></th>  --}}
+          </tr>  
+        </thead>  
+        <tbody>  
+          {{#each response}}
+       
+          <tr>  
+        <td>{{@index}}</td>
+          <td>{{this.date}}</td>
+          <td>{{this._id}}</td>
+          <td> {{ this.status}}</td>
+           <td>{{this.totalAmount}}</a></td>
+     
+          </tr>  
+      
+     {{/each}}
+        </tbody>  
+        
+      </table>  
+	  </div>
+        </div>
+    </div>
+
+</section>
+
+</body>  
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+</body>
+</html>  

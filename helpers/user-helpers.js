@@ -6,11 +6,24 @@ const { USER_COLLECTION } = require('../config/collection');
 const { response } = require('../app');
 const { ObjectID } = require('bson');
 const Razorpay=require('razorpay')
+const moment = require('moment')
 
 var instance = new Razorpay({
     key_id: 'rzp_test_0vH5oqVbjyHRrQ',
     key_secret: 'z30ZtbK3XkwsRALruU8dY7ja',
   });
+
+
+  const paypal = require('paypal-rest-sdk');
+const { profile } = require('console');
+  paypal.configure({
+      'mode': 'sandbox', //sandbox or live
+      'client_id': 'AX9fyik-uWHl25xJrAtL98FJcIlvP_z1xBOXOg-AQvHxxdkBDuMLxPD3DGNbWGoyZxdS9yXSGvGXozx8',
+      'client_secret': 'ELw5oaGz6UIBAZVUdlsruVU3hOuMCv4IjgPBuSinsy4Ib4yJ-lVo8FswIBc0OBrwUBqJZMTlcWEU4ysX'
+  });
+
+
+
 module.exports = {
     dosignup: (userData) => {
         console.log("fdfefwf");
@@ -41,6 +54,13 @@ module.exports = {
             let user = await db.get().collection(collection.USER_COLLECTION).findOne({email: userData.email})
             console.log("uuu",user);
             if (user) {
+                
+if(user.status==1){
+    reject(user)
+}
+else{
+                console.log('user',user);
+
                 bcrypt.compare(userData.password,user.password).then((status) => {
                     if (status) {
                         console.log("login success");
@@ -53,7 +73,8 @@ module.exports = {
                     }
                 })
 
-            } else {
+            }
+         } else {
                 console.log('login not user failed');
                 resolve({ status: false })
             }
@@ -169,7 +190,7 @@ module.exports = {
                     user:objectId(userId),
                     products:[proObj]
                 }
-                console.log("kjdfskkj");
+                
                 db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
                     resolve(response)
                 }) 
@@ -405,6 +426,8 @@ module.exports = {
     return new Promise((resolve,reject)=>{
         console.log('order',order,products,total);
         let status=order['payment-method']==='COD'?'placed':'pending'
+        let currentDate=moment(new Date()).format("DD/MM/YYYY")
+        console.log("current Date",currentDate);
         let orderobj={
             deliveryDetails:{
                 mobile:order.mobile,
@@ -417,7 +440,7 @@ module.exports = {
             products:products,
             totalAmount:total,
             status:status,
-            date:new Date()
+            date:currentDate
         }
         db.get().collection(collection.ORDER_COLLECTION).insertOne(orderobj).then((response)=>{
             db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(order.userId)})
@@ -436,6 +459,7 @@ getCartProductList:(userId)=>{
 getUserOrders:(userId)=>{
     return new Promise(async(resolve,reject)=>{
         let orders=await db.get().collection(collection.ORDER_COLLECTION).find({userId:objectId(userId)}).toArray()
+        console.log("orderssssssss",orders);
         resolve(orders)
     })
 },
@@ -477,7 +501,7 @@ getOrderProducts:(orderId)=>{
 generateRazorpay:(orderId,total)=>{
     return new Promise((resolve,reject)=>{
         var options = {
-            amount: total*100,  // amount in the smallest currency unit
+            amount: total,  // amount in the smallest currency unit
             currency: "INR",
             receipt: ""+orderId
           };
@@ -516,11 +540,105 @@ changePaymentStatus:(orderId)=>{
         })
       
     })
-}
+},
+generatePaypal: (orderId, total) => {
+    return new Promise((resolve, reject) => {
+
+        const create_payment_json = {
+
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"
+            },
+            "redirect_urls": {
+                "return_url": ""
+            },
+            "transactions": [{
+                "item_list": {
+                    "items": [{
+                        "name": "name",
+                        "sku": "sku",
+                        "price": total,
+                        "currency": "INR",
+
+                    }]
+
+                },
+                "amount": {
+                    "currency": "INR",
+                    "total": total
+                },
+
+            }]
+
+        };
         
+        paypal.payment.create(create_payment_json, function (error, payment) {
+
+
+            if (error) {
+                throw error;
+            }
+            else {
+                for (let i = 0; i < payment.links.length; i++) {
+                    if (payment.links[i].rel === 'approval_url') {
+                        res.redirect(payment.links[i].href);
+                    }
+                }
+            }
+        })
+
+    })
 
 
 
+},
+OtpRequest: (phone) => {
+    console.log("otpreq kerii");
+    return new Promise(async (resolve, reject) => {
+
+
+        let user = await db.get().collection(collection.USER_COLLECTION).findOne({ mobile: phone })
+        if (user) {
+            console.log("user indon nkki",user)
+            let stat = user.status
+            if (!stat) {
+                console.log(user.mobile);
+                resolve(user.mobile)
+            }
+            else {
+                reject()    
+            }
+
+        }
+        else {
+            reject()
+        }
+
+
+
+    })
+},
+getuserOtp: (phone) => {
+    return new Promise(async (resolve, reject) => {
+        console.log("get otp kerii");
+        let user = await db.get().collection(collection.USER_COLLECTION).findOne({ mobile: phone })
+        if (user) {
+            console.log(("ingane oru user ind",user));
+            resolve(user)
+        }
+    })
+},
+getProfile:(userId)=>{
+    return new Promise(async(resolve,reject)=>{
+        console.log("user",userId)
+    let profile=await db.get().collection(collection.USER_COLLECTION).findOne({_id:objectId(userId)}).then((response)=>{
+        resolve(response)
+
+    })
+        
+    })
+}
 
 
 

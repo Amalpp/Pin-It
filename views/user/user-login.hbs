@@ -25,6 +25,10 @@
             {{#if r}}
             <p style="color: rgb(255, 20, 20);">invalid username and password</p>
             {{/if}}
+         {{#if err}}
+            <p style="color: rgb(255, 20, 20);">User is blocked temporarly</p>
+            {{/if}}
+
 
             <h2>Login to your account</h2>
             <form id="login" action="/login" method="POST">
@@ -35,7 +39,12 @@
                
               <button type="submit" class="btn btn-default">Login</button>
             </form>
+           
           </div>
+          <hr>
+            <a class="btn btn-default" style="background-color: rgb(243, 154, 38);" href="/userOTPLogin">OTP LOGIN</a>
+
+           <hr> 
           <!--/login form-->
         </div>
         <div class="col-sm-1">
@@ -54,11 +63,13 @@
               <input type="text" id="mobile" name="mobile" placeholder="Mobile " />
 
               <input type="password" id="password" name="password" placeholder="Password" />
+                
               <br>
               <span id="span" style="color: red;"></span><br>
               {{!-- <input type ="button" name="" id="btn" value="Signup"> --}}
               <button type="submit" id="btn" class="btn btn-default">Signup</button>
             </form>
+          
           </div>
           <!--/sign up form-->
         </div>

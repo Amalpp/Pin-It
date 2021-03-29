@@ -11,17 +11,20 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "fileupload": "^1.0.0",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
+    "moment": "^2.29.1",
     "mongod": "^2.0.0",
     "mongodb": "^3.6.4",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.7",
-    "razorpay": "^2.0.6"
+    "paypal-rest-sdk": "^1.8.1",
+    "razorpay": "^2.0.6",
+    "twilio": "^3.59.0"
   }
 }

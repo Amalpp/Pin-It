@@ -2,6 +2,7 @@ var db = require('../config/connection')
 var collection = require('../config/collection')
 var objectId=require('mongodb').ObjectID;
 const { CATEGORY_COLLECTION } = require('../config/collection');
+const { ObjectID, ObjectId } = require('bson');
 
 
 
@@ -84,6 +85,212 @@ getAllCategory: () => {
         }
     })
 },
+getAllorders:(orderId)=>{
+    return new Promise(async(resolve,reject)=>{
+        let orders=await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+        resolve(orders)
+    })
+},
+approveOrders:(orderId,keyword)=>{
+    console.log("HIII KEYY",keyword);
+    return new Promise(async(resolve,reject)=>{
+       await  db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{
+            
+            $set:{
+                status:keyword
+            }
+        }).then((data)=>{
+            resolve(data)
+        })
+    })
+},
+viewOrders:(orderId)=>{
+    return new Promise(async(resolve,reject)=>{
+        console.log("next",orderId);
+    let prod= await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+        {
+            $match:{_id:objectId(orderId)}
+        },
+        {
+            $unwind:'$products'
+
+        },
+        {
+            $project:{
+                item:'$products.item',
+                quantity:'$products.quantity'
+            }
+        },
+        {
+            $lookup:{
+                from:collection.PRODUCT_COLLECTION,
+                localField:'item',
+                foreignField:'_id',
+                as:'product'
+            }
+        },
+        {
+            $project:{
+                item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
+            }
+
+        }
+    ]).toArray()
+    console.log("this ethi",prod);
+    resolve(prod)
+})
+
+
+   
+    
+},
+getOrderReport: () => {
+
+    return new Promise((resolve, reject) => {
+
+       let orders = db.get().collection(collection.ORDER_COLLECTION).find().toArray().then((result) => {
+
+          resolve(result)
+       })
+
+    })
+
+
+ },
+
+ ordersGraph: () => {
+
+    return new Promise(async (resolve, reject) => {
+
+        let graphData = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+            $match: {
+                status: "shippped"
+            }
+        },
+        {
+            $project: {
+                date: 1,
+                _id: 0,
+                totalAmount: 1
+            }
+        },
+        {
+            $group: {
+                _id: { month: "$date" },
+                count: { $sum: 1 },
+                total: { $sum: "$totalAmount" }
+            }
+        },
+        {
+            $project: {
+                _id: 1,
+                total: 1
+            }
+        }
+        ]).toArray()
+
+        var response = {
+            date: [],
+            total: []
+        }
+        for (i = 0; i < graphData.length; i++) {
+            response.date[i] = graphData[i]._id.month
+            response.total[i] = graphData[i].total
+        }
+        resolve(response)
+        console.log("ReS IS", response);
+
+    })
+},
+getUserCount:()=>{
+    return new Promise(async(resolve,reject)=>{
+       
+        let userCount=await db.get().collection(collection.USER_COLLECTION).find().count()
+        console.log("count",userCount);
+        resolve(userCount)
+    })
+},
+getOrderCount:()=>{
+    return new Promise(async(resolve,reject)=>{
+      let  orderCount=await db.get().collection(collection.ORDER_COLLECTION).find().count()
+      resolve(orderCount)
+    })
+},
+getCancelledOrder:()=>{
+    return new Promise(async(resolve,reject)=>{
+        let  cancelOrder=await db.get().collection(collection.ORDER_COLLECTION).find({status:'cancel'}).count()
+        resolve(cancelOrder)
+      })
+},
+gettotalProduct:()=>{
+    return new Promise(async(resolve,reject)=>{
+    let  product=await db.get().collection(collection.PRODUCT_COLLECTION).find().count()
+    resolve(product)
+})
+  
+},
+getConfirmOrder:()=>{
+    return new Promise(async(resolve,reject)=>{
+        let  shippedOrder=await db.get().collection(collection.ORDER_COLLECTION).find({status:'confirm'}).count()
+        console.log("hii",shippedOrder);
+        resolve(shippedOrder)
+      })
+},
+
+totalRevenue: () => {
+
+    return new Promise(async (resolve, reject) => {
+
+       let y = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+          $group: {
+             _id: null,
+             totalAmount: {
+                $sum: "$totalAmount"
+             }
+          }
+       }]).toArray()
+
+       resolve(y)
+
+    })
+ },
+ getOrderByDate: (req) => {
+
+    return new Promise(async (resolve, reject) => {
+
+       let from = req.fromDate
+       let to = req.toDate
+       let dfrom = moment(from).format("MM/DD/YYYY");
+       let dto = moment(to).format("MM/DD/YYYY");
+     
+
+
+
+       let salesReport = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+          {
+             $match: {
+                date: {
+                   $gte: dfrom,
+                   $lte: dto
+                }
+             }
+          },
+          {
+             $project: {
+                totalAmount: 1,
+                paymentMethod: 1,
+                status: 1,
+                Date: 1,
+                _id: 1
+
+             }
+          }
+       ]).toArray()
+       resolve(salesReport)
+
+    })
+
+ },
 
 
 

@@ -1,0 +1,17 @@
+
+{{#each product}}
+
+<div class="card" style="width: 18rem;">
+    <img src="/product-image/{{this.product._id}}.jpg" class="card-img-top" alt="">
+    <div class="card-body">
+        <h5  class="card-title">{{this.product.productname}}</h5>
+        <p class="card-text">{{this.product.discription}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{this.product.size}}</li>
+        <li  class="list-group-item">{{this.product.price}}</li>
+        
+    </ul>
+    
+</div>
+{{/each}}
