@@ -130,7 +130,7 @@ router.get('/unblock/:id', verifyLogin, (req, res) => {
 router.get('/product-management', verifyLogin, function (req, res) {
   console.log("dsnfkuhoihhinf");
   productHelper.getAllProduct().then((products) => {
-
+    console.log("proname",products);
     res.render('admin/product-management', { admin: true, products });
   })
 });
@@ -172,15 +172,16 @@ router.get('/deleteProduct/:id', verifyLogin, (req, res) => {
   })
 
 });
-router.get('/edit-product', verifyLogin, async (req, res) => {
+router.get('/edit-product/:id', verifyLogin, async (req, res) => {
   console.log("start");
-  let products = await productHelper.getprodDetails(req.query.id)
-  
+  let products = await productHelper.getprodDetails(req.params.id)
+  console.log("id adymmmmmmmm");
   res.render('admin/edit-product', { admin: true, products })
+  console.log("product",products);
 });
 
 router.post('/edit-product/:id', verifyLogin, (req, res) => {
-  console.log(req.params.id)
+  console.log("id ethiiiiiii",req.params.id)
 
   productHelper.updateProduct(req.params.id, req.body).then(() => {
     res.redirect('/product-management')
@@ -265,7 +266,7 @@ router.get('/admin-logout', (req, res) => {
 router.get("/saleReport",(req,res)=>{
   productHelpers.getOrderReport().then(async(result)=>{
     let monthsales = await productHelpers.ordersGraph()
-
+console.log("ssssssssssssssssssssssssssssssss",monthsales);
     res.render('admin/reports', { admin: true, result, monthsales })
   })
   

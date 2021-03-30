@@ -3,6 +3,7 @@ var collection = require('../config/collection')
 var objectId=require('mongodb').ObjectID;
 const { CATEGORY_COLLECTION } = require('../config/collection');
 const { ObjectID, ObjectId } = require('bson');
+var moment = require('moment');
 
 
 
@@ -33,7 +34,7 @@ module.exports={
         
         db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objectId(prodId) }, {
             $set: {
-                productname  : prodDetails.username,
+                productname  : prodDetails.productname,
                 size: prodDetails.size,
                 category: prodDetails.category,  
                 price :prodDetails.price,
@@ -260,11 +261,11 @@ totalRevenue: () => {
 
        let from = req.fromDate
        let to = req.toDate
-       let dfrom = moment(from).format("MM/DD/YYYY");
-       let dto = moment(to).format("MM/DD/YYYY");
+       let dfrom = moment(from).format("DD/MM/YYYY");
+       let dto = moment(to).format("DD/MM/YYYY");
      
 
-
+console.log("dsdddddddddddddddddd",dfrom,dto);
 
        let salesReport = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
           {
@@ -280,12 +281,13 @@ totalRevenue: () => {
                 totalAmount: 1,
                 paymentMethod: 1,
                 status: 1,
-                Date: 1,
+                date: 1,
                 _id: 1
 
              }
           }
        ]).toArray()
+       console.log("dssssssssssssssssssssss",salesReport)
        resolve(salesReport)
 
     })

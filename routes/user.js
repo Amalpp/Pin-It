@@ -224,9 +224,7 @@ router.post('/user-signup', function (req, res, next) {
 
 
 
-router.get('/contactus', function (req, res, next) {
-  res.render('user/contactus', { user: true })
-});
+
 router.get('/logout', (req, res) => {
   req.session.loggedIn = false
   res.redirect('/')

@@ -235,7 +235,7 @@ else{
                 }
                 
             ]).toArray()
-          
+          console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",cartItems);
             resolve(cartItems)
         })
     },

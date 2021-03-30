@@ -147,7 +147,10 @@
                         </div>
                     
                 </div>
-<canvas id="myChart" width="400" height="400"></canvas>
+                <div style="width: 500px;height: 500px;">
+                    <canvas id="myChart" width="50" height="50"></canvas>
+                </div>
+          
 
         </div>
 
@@ -162,7 +165,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels:['users count at Ecart', 'total orders at E cart', 'completed orders', 'Cancelled Orders', 'Total Products'],
         datasets: [{
-            label:   '# of Votes',
+            label:   'order-managment',
             data: [{{usercount}},{{ordercount}},{{completed_orders}},{{totalProducts}}],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -193,6 +196,9 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+
+    
 </script>
 
 

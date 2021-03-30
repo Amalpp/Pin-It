@@ -68,9 +68,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Image</label>
-                                        <img src="/product-image/{{products._id}}.jpg" alt="" style="width: 50px;height: 50px;">
+                                        <img src="/product-image/{{products._id}}.jpg" alt="" style="width: 50px;height: 50px;" id="imgView">
                                         <input type="file" class="form-control" name="image" id="username"
-                                            placeholder="Enter Image" value="{{product.image}}">
+                                            placeholder="Enter Image" value="{{product.image}}" onchange="viewImage(event)">
                                     </div>
 
                                 
@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="mt-3 d-grid">
-                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Add Product</button>
+                                        <button class="btn btn-primary waves-effect waves-light" type="submit">edit Product</button>
                                     </div>
 
 
@@ -102,3 +102,8 @@
         </div>
     </div>
     <!-- end account-pages -->
+<script>
+    function viewImage(){
+        document.getElementById('viewImage').src=URL.createObjectURL(event.target,files[0])
+    }
+</script>

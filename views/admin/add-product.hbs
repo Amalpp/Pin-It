@@ -1,332 +1,163 @@
-{{!-- 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
-    <div class="account-pages my-5 pt-sm-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-primary bg-soft">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-primary p-4">
-                                        <h5 class="text-primary">Add Product</h5>
-                                        <p>Add Product by Pin It Admin.</p>
-                                    </div>
-                                </div>
-                                <div class="col-5 align-self-end">
-                                    <img src="../assets/images/profile-img.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <div class="auth-logo">
-                                <a href="" class="auth-logo-light">
-                                    <div class="avatar-md profile-user-wid mb-4">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <img src="../assets/images/logo-light.svg" alt="" class="rounded-circle"
-                                                height="34">
-                                        </span>
-                                    </div>
-                                </a>
+    
 
-                                <a href="" class="auth-logo-dark">
-                                    <div class="avatar-md profile-user-wid mb-4">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <img src="../assets/images/logo.svg" alt="" class="rounded-circle" height="34">
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="p-2">
-                                <form class="form-horizontal" enctype="multipart/form-data" action="/add-product" method="POST">
+<div class="page-content">
+    <div class="container-fluid" style="max-width: 960px ; margin:auto ; float: right">
+        <div class="row " style="margin;">
+        <form class="well form-horizontal" enctype="multipart/form-data" action="/add-product" method="post"
+            id="add-product">
+            <fieldset>
 
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control" name="productname" id="username"
-                                            placeholder="Enter Name">
-                                    </div>
-                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Size</label>
-                                        <input type="text" class="form-control" name="size" id="size"
-                                            placeholder="Enter the size" >
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="username" class="form-label">Category</label>
-                                        <input type="text" class="form-control" name="category" id="category"
-                                            placeholder="Enter Category" >
+                <!-- Form Name -->
+                <legend>
+                    <center>
+                        <h2><b>Add product</h2>
+                    </center>
+                </legend><br>
 
-                                          
+                <!-- Text input-->
 
-                                      
-                                                 
-                                    </div>
-                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Price</label>
-                                        <input type="text" class="form-control" name="price" id="price"
-                                            placeholder="Enter Category" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Discription</label>
-                                        <input type="text" class="form-control" name="discription" id="username"
-                                            placeholder="Enter Discription" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Image</label>
-                                        <input type="file" class="form-control" name="image" id="image"
-                                            placeholder="Enter Image" >
-                                    </div>
-
-                                
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember-check">
-                                        <label class="form-check-label" for="remember-check">
-                                            Remember me
-                                        </label>
-                                    </div>
-
-                                    <div class="mt-3 d-grid">
-                                      
-                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Add Product</button>
-                                    </div>
-
-
-                                   
-                                </form>
-                            </div>
-
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Product Name</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="productname" placeholder="Product Name" class="form-control" type="text">
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-
-                    </div>
-
                 </div>
-            </div>
+
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Size</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="size" placeholder="size" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Category</label>
+                    <div class="col-md-4 selectContainer">
+                        <div class="input-group">
+
+                            <select name="category" class="form-control selectpicker">
+                                {{#each result}}
+                                <option value="{{this.category}}">{{this.category}}</option>
+
+                                {{/each}}
+                            </select>
+                            <span class="input-group-addon">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Price</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="price" placeholder="Price" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Discription</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="discription" placeholder="discription" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Image</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="image" id="image" placeholder="Password" class="form-control" type="file">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+
+
+
+                <!-- Text input-->
+
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4"><br>
+                        <button type="submit" class="btn btn-warning">SUBMIT <span
+                                class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
         </div>
     </div>
-    <!-- end account-pages -->
+</div><!-- /.container -->
 
-    --}}
-
-
-
-    <div class="main-content p-5 ">
-       <div class="container">
-
-    <form class="well form-horizontal" enctype="multipart/form-data" action="/add-product" method="post"  id="contact_form">
-<fieldset>
-
-<!-- Form Name -->
-<legend><center><h2><b>Add product</h2></center></legend><br>
-
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Product Name</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="productname" placeholder="Product Name" class="form-control"  type="text">
-    </div>
-  </div>
 </div>
 
-<!-- Text input-->
+</body>
+ <script>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" >Size</label> 
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="size" placeholder="Last Name" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
+      $(document).ready(function () {
 
-  <div class="form-group"> 
-  <label class="col-md-4 control-label">Category</label>
-    <div class="col-md-4 selectContainer">
-    <div class="input-group">
-    
-    <select name="category"class="form-control selectpicker">
-          {{#each result}}
-      <option value="{{this.category}}">{{this.category}}</option>
-   
-      {{/each}}
-    </select>
-    <span class="input-group-addon">
-  </div>
-</div>
-</div>
-  
-  <div class="form-group">
-  <label class="col-md-4 control-label">Price</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="price" placeholder="Username" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Discription</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="discription" placeholder="Username" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-4 control-label" >Image</label> 
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="image" id="image" placeholder="Password" class="form-control"  type="file">
-    </div>
-  </div>
-</div>
-
-<!-- Text input-->
-
-
-
-<!-- Text input-->
-
-
-
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4"><br>
-  <button type="submit" class="btn btn-warning" >SUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-</div>
-    </div><!-- /.container -->
-    
-</div>
-
-    <script>
-
-
-         $(document).ready(function() {
-    $('#contact_form').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            first_name: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                    },
-                        notEmpty: {
-                        message: 'Please enter your First Name'
-                    }
-                }
+        $("#add-product").validate({
+          rules: {
+            productname: {
+              required: true,
+              minlength: 3
             },
-             last_name: {
-                validators: {
-                     stringLength: {
-                        min: 2,
-                    },
-                    notEmpty: {
-                        message: 'Please enter your Last Name'
-                    }
-                }
+            size: {
+              required: true,
+              Number: true
             },
-			 user_name: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please enter your Username'
-                    }
-                }
+            price: {
+              required: true,
+              Number: true,
+              maxlength: 10
             },
-			 user_password: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please enter your Password'
-                    }
-                }
-            },
-			confirm_password: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please confirm your Password'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please enter your Email Address'
-                    },
-                    emailAddress: {
-                        message: 'Please enter a valid Email Address'
-                    }
-                }
-            },
-            contact_no: {
-                validators: {
-                  stringLength: {
-                        min: 12, 
-                        max: 12,
-                    notEmpty: {
-                        message: 'Please enter your Contact No.'
-                     }
-                }
-            },
-			 department: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your Department/Office'
-                    }
-                }
-            },
-                }
+            discription: {
+              required: true,
+              minlength: 5
             }
-        })
-        .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
 
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
+          }
         });
-});
-    </script>
+      });
+
+
+       
+  </script>
+</html>
+
+
+
+
+
