@@ -1,0 +1,66 @@
+    <div class="main-content">
+      <div class="page-content  ">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Create a new Category</h2>
+              </div>
+            </div>
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form  class="tm-edit-product-form" method="POST" action="/edit-category/{{category._id}}">
+                  <div class="form-group mb-3">
+                    <label
+                      for="category name"
+                      >Category Name
+                    </label>
+                    <input
+                      id="category"
+                      name="category"
+                      type="text"
+                      value="{{category.category}}"
+                      class="form-control validate"
+                      required/>
+                  
+                  
+                   
+                  </div>
+                  
+              </div>
+
+
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Edit Category Now</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{{!-- <div>
+  <label for="image" style="color: white;">IMAGE 2</label>
+  <input type="file" name="image2" id="Image2" class="form-control">
+</div> --}}
+
+
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+ 
+        if(file){
+            var reader = new FileReader();
+ 
+            reader.onload = function(){
+                $("#previewImg").attr("src", reader.result);
+            }
+ 
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

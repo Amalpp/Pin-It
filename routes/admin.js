@@ -5,6 +5,7 @@ var userHelpers = require('../helpers/user-helpers')
 var productHelper = require('../helpers/product-helpers');
 const { request } = require('../app');
 const productHelpers = require('../helpers/product-helpers');
+var base64ToImage = require('base64-to-image');
 
 var data = { name: "amal", password: 1111 }
 
@@ -129,39 +130,79 @@ router.get('/unblock/:id', verifyLogin, (req, res) => {
 
 router.get('/product-management', verifyLogin, function (req, res) {
   console.log("dsnfkuhoihhinf");
-  productHelper.getAllProduct().then((products) => {
+  productHelpers.getAllProduct().then((products) => {
     console.log("proname",products);
     res.render('admin/product-management', { admin: true, products });
   })
 });
 
 router.get('/add-product', verifyLogin, function (req, res) {
-  productHelper.getAllCategory().then((result) => {
+  productHelpers.getAllCategory().then((result) => {
     res.render('admin/add-product', { admin: true, result })
   })
 
 });
 
 
-router.post('/add-product', verifyLogin, function (req, res) {
+// router.post('/add-product', verifyLogin, function (req, res) {
 
+//   req.body.price = parseInt(req.body.price)
+//   productHelpers.addProduct(req.body, (id) => {
+//     console.log(req.body);
+//     let image = req.files.image
+
+//     image.mv('./public/product-image/' + id + '.jpg', (err) => {
+//       if (!err) {
+//         console.log('hushfiu');
+//         res.redirect('/product-management')
+//       } else {
+//         console.log(err)
+//       }
+//     })
+
+//   })
+
+// });
+
+
+
+
+router.post('/add_product', verifyLogin ,(req, res) => {
+  
   req.body.price = parseInt(req.body.price)
-  productHelper.addProduct(req.body, (id) => {
-    console.log(req.body);
-    let image = req.files.image
+  
+  productHelpers.addProduct(req.body, (id) => {
+    let image1 = req.files.image1
+    let image2 = req.files.image2
+        
 
-    image.mv('./public/product-image/' + id + '.jpg', (err) => {
-      if (!err) {
-        console.log('hushfiu');
-        res.redirect('/product-management')
-      } else {
-        console.log(err)
-      }
-    })
 
-  })
+    var base64Str1 = req.body.imageBase64Data1
+    console.log('ithaanalle',base64Str1);
+    var path = "./public/product-image/";
+    var optionalObj = { fileName: id+'1', type: "jpg" };
+    base64ToImage(base64Str1, path, optionalObj);
 
-});
+    var base64Str2 = req.body.imageBase64Data2
+    console.log('ithaanalle',base64Str2);
+    var path = "./public/product-image/";
+    var optionalObj = { fileName: id+'2', type: "jpg" };
+    base64ToImage(base64Str2, path, optionalObj);
+
+   
+
+  
+    res.redirect('/product-management')
+
+  });
+})
+
+
+
+
+
+
+
 router.get('/deleteProduct/:id', verifyLogin, (req, res) => {
 
   let prodId = req.params.id
@@ -206,6 +247,51 @@ router.post('/add-category', ((req, res) => {
   })
 
 }));
+
+router.get("/edit-category/:id",verifyLogin,(req,res)=>{
+  let ses = req.session.name
+  if (ses) {
+    productHelpers.getCategoryById(req.params.id).then((category) => {
+      res.render('admin/edit-category', { admin: true, category })
+    })
+  }
+  else {
+    res.redirect('/admin')
+  }
+})
+
+
+router.post('/edit-category/:id', (req, res) => {
+  let sess = req.session.name
+  if (sess) {
+    productHelpers.updateCategory(req.params.id, req.body).then(() => {
+
+      res.redirect('/category-management')
+    })
+  }
+
+  else {
+    res.redirect('/admin')
+  }
+
+})
+router.get('/delete-category/:id', (req, res) => {
+  let sess = req.session.name
+  if (sess) {
+    productHelpers.deleteCategory(req.params.id).then(() => {
+
+      res.redirect('/category-management')
+    })
+  }
+  else {
+    res.redirect('/admin')
+  }
+
+})
+
+
+
+
 
 
 router.get('/category-management', verifyLogin, ((req, res) => {

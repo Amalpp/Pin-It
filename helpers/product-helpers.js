@@ -15,6 +15,7 @@ module.exports={
             callback (data.ops[0]._id)
         })
     },
+
     getAllProduct:()=>{
         return new Promise(async(resolve,reject)=>{
             let products= await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
@@ -52,6 +53,7 @@ module.exports={
         })
     })
 },
+
 singleProduct:(prodId)=>{
     return new Promise(async(resolve,reject)=>{
        let product=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id: objectId(prodId)}).then((data)=>{
@@ -86,6 +88,60 @@ getAllCategory: () => {
         }
     })
 },
+
+
+
+getCategoryById: (categoryId) => {
+
+    return new Promise(async (resolve, reject) => {
+
+
+        await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ _id: ObjectID(categoryId) }).then((data) => {
+
+            resolve(data)
+        })
+    })
+},
+
+//category update
+
+updateCategory: (categoryId, data) => {
+
+    return new Promise(async (resolve, reject) => {
+        await db.get().collection(collection.CATEGORY_COLLECTION).updateOne({ _id: ObjectID(categoryId) },
+            {
+                $set: {
+                    category: data.category
+
+                }
+            }).then((response) => {
+                resolve(response)
+            })
+    })
+},
+deleteCategory: (categoryId) => {
+    return new Promise(async (resolve, reject) => {
+        await db.get().collection(collection.CATEGORY_COLLECTION).removeOne({ _id: ObjectID(categoryId) }).then((response) => {
+            resolve(response)
+        })
+    })
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 getAllorders:(orderId)=>{
     return new Promise(async(resolve,reject)=>{
         let orders=await db.get().collection(collection.ORDER_COLLECTION).find().toArray()

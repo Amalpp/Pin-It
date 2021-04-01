@@ -45,10 +45,9 @@
                 <td>{{this.category}}</td>
                 
                 
-                <td><a href="/edit-product?id={{this._id}}" class="btn btn-primary" type="submit">Edit</a></td>
-                <td> <a href="/deleteProduct/{{this._id}}" class="btn btn-danger"
-                onclick="return confirm('are you want to delete{{this.catname}}?')" type="submit">delete</a>
-            </td>
+                <td><a href="/edit-category/{{this._id}}" style="color: white; " ><button type="button" class="btn btn-primary">EDIT</a> </button></td>  
+    <td><a href="/delete-category/{{this._id}}" style="color:rgb(255, 255, 255);"onclick="return confirm('Are you sure you want to delete this user');"><button type="button" class="btn btn-danger">DELETE</a> </button></button></td>  
+                
             </tr>
         {{/each}}
         </tbody>

@@ -19,10 +19,14 @@
 <body>
     
     <section class="main-content">
+       
          
-        <div class="page-content">
-           
-    <table id="example" class="ui celled table" style="width:100%">
+        <div class="page-content" style="padding: 10px; margin-top: 200px;">
+             
+            <div>
+          <a href="/add-product" type="button " style="width: 100px; height: 20px; background-color: rgb(79, 238, 16); margin-bottom: 20px; " class="  form-control form-control-sm   "  placeholder="button" aria-controls="example " ><span style="font-weight: bold ;" class="align-items-center" > Add Product </span> </a>
+    </div>
+    <table id="example" class="ui celled table" style="width:100%; ">
         <thead>
             <tr>
                 <th>NO</th>
@@ -45,7 +49,13 @@
                 <td>{{this.category}}</td>
                 <td>{{this.price}}</td>
                 <td>{{this.discription}}</td>
-                <td> <img style="width: 50px; height:50px" src="product-image/{{this._id}}.jpg" alt=""></td>
+                {{!-- <td> <img style="width: 50px; height:50px" src="product-image/{{this._id}}.jpg" alt=""></td> --}}
+
+                <td class="d-none d-md-table-cell">
+                                            <img src="product-image/{{this._id}}1.jpg" width="50px"
+                                                height="50px" alt="">
+                                        </td>
+
                 <td><a href="/edit-product/{{this._id}}" class="btn btn-primary" type="submit">Edit</a></td>
                 <td> <a href="/deleteProduct/{{this._id}}" class="btn btn-danger"
                 onclick="return confirm('are you want to delete{{this.productname}}?')" type="submit">delete</a>
@@ -70,9 +80,7 @@
 
         </div>
     </section>
-    <div>
-          <a href="/add-product" type="button " style="width: 14em; background-color: rgb(79, 238, 16);  " class="  form-control form-control-sm   float-end "  placeholder="button" aria-controls="example " ><span style="font-weight: bold ;" class="align-items-center" > Add Product </span> </a>
-    </div>
+   
 </body>
 <script>
     $(document).ready(function() {
