@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" ></script>
+    <script src="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" ></script>
+    
+</head>
+<body>
+    <section class="main-content">
+       
+        <div class="page-content " >
+             <a href="/new-coupon" class="btn " style="font-size: larger; background-color: rgb(156, 201, 241);">Generate coupon</a>
+
+    <table style="background-color: rgb(203, 203, 216);" id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <tr>  
+              <th style="font-weight: bolder;">Sl.No</th>  
+            <th style="font-weight: bolder;">Offer discount rate
+                 </th>  
+            <th style="font-weight: bolder;">Coupon</th>  
+              <th style="font-weight: bolder;">status</th>  
+               
+
+               
+            </tr>
+        </thead>
+        <tbody>
+          {{#each coupons}}
+       
+          <tr>  
+        <td>{{@index}}</td>
+          <td>{{this.offer}}%</td>
+          <td>{{this.coupon}}</td>
+          <td> {{#if this.status}} Valid {{else}}Expired! {{/if}}</td>
+           <td><a href="/delete-coupon/{{this._id}}"><button class="btn btn-danger">Deactivate</button></a></td>
+     
+          </tr>  
+      
+     {{/each}}
+        </tbody>
+        <tfoot>
+        <tr>  
+              <th style="font-weight: bolder;">Sl.No</th>  
+            <th style="font-weight: bolder;">Offer discount rate
+                 </th>  
+            <th style="font-weight: bolder;">Coupon</th>  
+              <th style="font-weight: bolder;">status</th>  
+               
+
+               
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+</html>

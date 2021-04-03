@@ -4,6 +4,7 @@ module.exports={
     CATEGORY_COLLECTION:"category",
     CART_COLLECTION:'cart',
     ADRESS_COLLECTION:'adress',
-    ORDER_COLLECTION:'order'
+    ORDER_COLLECTION:'order',
+    COUPON_COLLECTION:'coupon'
    
 }

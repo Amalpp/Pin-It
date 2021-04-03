@@ -1,0 +1,83 @@
+<div class="page-content">
+    <div class="container-fluid" style="max-width: 960px ; margin:auto ; float: right">
+        <div class="row " style="margin;">
+            <form class="well form-horizontal"  action="/create-offer" method="post"
+                id="add-product">
+                <fieldset>
+                    <legend>
+                        <center>
+                            <h2><b>Add offer product Wise</h2>
+                        </center>
+                    </legend><br>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Product</label>
+                        <div class="col-md-4 selectContainer">
+                            <div class="input-group">
+
+                                <select name="product" class="form-control selectpicker">
+                                    {{#each products}}
+                                    <option value="{{this._id}}">{{this.productname}}</option>
+
+                                    {{/each}}
+                                </select>
+                                <span class="input-group-addon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Discount percentage (in %)</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="discount" name="discount" type="number" placeholder="discount"
+                                    class="form-control validate" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">From Date</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="date" id="fromDate" name="valid_from">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">To Date</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="Date" id="toDate" name="valid_to">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4"><br>
+                                <button type="submit" class="btn btn-warning float-center" value="Submit">SUBMIT
+                                    <span
+                                        class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                            </div>
+                        </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div><!-- /.container -->

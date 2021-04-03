@@ -90,7 +90,7 @@ a#scrollUp i {
 .social-icons ul li a {
     border: 0 none;
     border-radius: 0;
-    color: #696763;
+    color: #1fd163;
     padding: 0px;
 }
 
@@ -742,7 +742,7 @@ h2.title:before {
 }
 
 .panel-body ul li a {
-    color: #696763;
+    color: #1f180b;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     text-transform: uppercase;
@@ -756,7 +756,7 @@ h2.title:before {
 
 .brands-name .nav-stacked li a {
     background-color: #FFFFFF;
-    color: #696763;
+    color: #000000;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding: 5px 25px;
@@ -766,7 +766,7 @@ h2.title:before {
 
 .brands-name .nav-stacked li a:hover {
     background-color: #fff;
-    color: #696763;
+    color: #000000;
 }
 
 .shipping {
@@ -864,7 +864,7 @@ h2.title {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: #696763;
+    color: #eba20f;
 }
 
 .productinfo img {
@@ -876,7 +876,7 @@ h2.title {
 }
 
 .product-overlay {
-    background: rgba(254, 152, 15, .8);
+    background: rgba(130, 131, 127, 0.8);
     top: 0;
     display: none;
     height: 0;
@@ -923,10 +923,10 @@ h2.title {
 }
 
 .add-to-cart {
-    background: #F5F5ED;
+    background: #7c7976;
     border: 0 none;
     border-radius: 0;
-    color: #696763;
+    color: #e6e6c6;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     margin-bottom: 25px;
@@ -957,7 +957,7 @@ h2.title {
 }
 
 .choose ul li a {
-    color: #B3AFA8;
+    color: #494642;
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
     padding-left: 0;
@@ -2283,7 +2283,7 @@ textarea {
 }
 
 .replay-box span {
-    color: #FE980F;
+    color: #e6e4e3;
     float: right;
     font-weight: 700;
     margin-top: 21px;
@@ -2300,7 +2300,7 @@ textarea {
 
 .replay-box form input:hover,
 .text-area textarea:hover {
-    border: 1px solid #FE980F;
+    border: 1px solid #ff9215;
 }
 
 .text-area {
@@ -2330,7 +2330,7 @@ textarea {
     height: auto;
     border-style: solid;
     border-width: 8px;
-    border-color: #FE980F transparent transparent transparent;
+    border-color: #f59e2c transparent transparent transparent;
     top: 25px;
     left: 5px
 }

@@ -6,6 +6,7 @@ var productHelper = require('../helpers/product-helpers');
 const { request } = require('../app');
 const productHelpers = require('../helpers/product-helpers');
 var base64ToImage = require('base64-to-image');
+var voucher_codes = require('voucher-code-generator');
 
 var data = { name: "amal", password: 1111 }
 
@@ -344,10 +345,7 @@ router.get("/view-order/:id",async (req,res)=>{
 
     
 
-router.get('/admin-logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/admin-login')
-})
+
 
 router.get("/saleReport",(req,res)=>{
   productHelpers.getOrderReport().then(async(result)=>{
@@ -365,5 +363,127 @@ router.post('/findReportbyDate', verifyLogin, (req, res) => {
   })
 
 })
+
+
+
+router.get('/create-offer-ByCategory', verifyLogin, async(req, res) => {
+
+  productHelper.getAllCategory().then((category) => {
+    console.log("cats", category);
+    res.render('admin/add-offers', { admin: true, category })
+  })
+})
+
+router.post('/create-offer-ByCategory', verifyLogin, (req, res) => {
+
+  let catId = req.body.category
+  console.log("evide", catId);
+  productHelper.addOfferToCategory(catId, req.body).then((data) => {
+    res.redirect('/offers')
+  })
+})
+
+
+
+router.get('/offers', verifyLogin, async (req, res) => {
+
+  productHelper.viewOffers().then((data) => {
+
+
+    res.render('admin/offer', { admin: true, data })
+
+  })
+});
+router.get('/create-offer', verifyLogin, async (req, res) => {
+
+  productHelpers.getAllProduct().then((products) => {
+
+
+    res.render('admin/add-offer', { admin: true, products })
+  })
+});
+
+router.post('/create-offer', verifyLogin, (req, res) => {
+  console.log("entanu ulllth",req.body);
+  let prodId = req.body.product
+  console.log("fddddddddddddddddddd");
+  productHelpers.addOfferToProduct(prodId , req.body).then((data) => {
+    res.redirect('/offers')
+  });
+
+})
+
+  
+  
+  router.get('/delete-offer/:id', verifyLogin,async (req, res) => {
+  
+    let prodId = req.params.id
+    productHelpers.deleteOffer(prodId).then((data) => {
+      console.log("ffffffffffffffffffffffffffff",data);
+  
+      res.redirect('/offers')
+    })
+  })
+  
+
+
+  
+  router.get('/coupon', verifyLogin, (req, res) => {
+
+    productHelpers.getcoupon().then((coupons) => {
+  
+  
+      res.render('admin/coupon', { admin: true, coupons })
+    })
+  })
+
+  router.get('/new-coupon', verifyLogin, (req, res) => {
+
+    res.render('admin/add-coupon', { admin: true })
+  })
+  
+  router.get('/generate-couponCode', verifyLogin, (req, res) => {
+
+    let voucher = voucher_codes.generate({
+      length: 8,
+      count: 1
+    })
+    let voucherCode = voucher[0]
+    console.log("jjjj",voucherCode);
+    res.send(voucherCode)
+  })
+
+  router.post('/new-coupon', async (req, res) => {
+
+    let coupon = req.body.coupon
+    let offer = req.body.offer
+  
+    await productHelpers.createCoupons(offer, coupon).then(() => {
+      res.redirect('/coupon')
+    })
+  
+  })
+
+
+  router.get('/delete-coupon/:id', async (req, res) => {
+
+    await productHelpers.deactivateCoupon(req.params.id).then(() => {
+      console.log("dkd");
+      res.redirect('/coupon')
+    })
+  
+  })
+  
+
+
+
+  router.get('/admin-logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/admin-login')
+  })
+
+
+
+
 
 module.exports = router;

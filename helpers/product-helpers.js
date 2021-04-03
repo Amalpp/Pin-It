@@ -1,7 +1,7 @@
 var db = require('../config/connection')
 var collection = require('../config/collection')
 var objectId=require('mongodb').ObjectID;
-const { CATEGORY_COLLECTION } = require('../config/collection');
+const { CATEGORY_COLLECTION, PRODUCT_COLLECTION } = require('../config/collection');
 const { ObjectID, ObjectId } = require('bson');
 var moment = require('moment');
 
@@ -349,6 +349,194 @@ console.log("dsdddddddddddddddddd",dfrom,dto);
     })
 
  },
+
+
+ viewOffers: () => {
+    return new Promise((resolve, reject) => {
+
+
+        db.get().collection(collection.PRODUCT_COLLECTION).find({ discount: { $exists: true } }).toArray().then((products) => {
+            console.log("count und" ,products);
+            resolve(products)
+        })
+    })
+},
+
+
+
+
+
+
+
+
+
+
+
+addOfferToProduct:(prodId,data)=>{
+   
+     let discount=data.discount
+     return new Promise(async(resolve,reject)=>{
+     await  db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(prodId)}).then((product)=>{
+             
+             let price = product.price
+             let oldPrice = product.price
+             let disc = 100 - discount
+             new_amount =(disc * price)/100
+
+
+
+             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:objectId(prodId)},{
+                 $set:{
+                     discount:data.discount,
+                     oldPrice:oldPrice,
+                     price:new_amount,
+                     valid_from:data.valid_from,
+                     valid_to:data.valid_to
+                 }
+             }).then((data) => {
+                 resolve(data)
+             })
+         })
+     })
+ },
+
+
+
+
+
+
+
+ addOfferToCategory: (category, data) => {
+    return new Promise(async (resolve, reject) => {
+        console.log("npppp", data);
+        console.log("ccccccccc", category);
+        let products = await db.get().collection(collection.CATEGORY_COLLECTION).find({ category: category }).toArray()
+
+        console.log("$$$$$$$$$$$$$$$$$", products);
+        let length = products.length
+        console.log("lengthhthth", length);
+
+        for (i = 0; i < length; i++) {
+            let offer = data.discount
+
+            let discounted_rate = products[i].price - (products[i].price * offer) / 100
+
+            let updated = db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(products[i]._id) }, {
+                $set: {
+                    discount: offer,
+                    oldPrice: products[i].price,
+                    price: discounted_rate,
+                    valid_from: data.valid_from,
+                    valid_to: data.valid_to
+                }
+            }).then((data)=>{
+               
+                resolve(data)    
+            })
+
+        }
+
+     
+    })
+},
+
+deleteOffer: (prodId) => {
+
+    return new Promise(async (resolve, reject) => {
+
+        let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: ObjectID(prodId) })
+        let price = product.oldPrice
+
+        db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(prodId) }, {
+            $set: {
+                price: price
+            }
+        })
+
+
+        db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(prodId) }, {
+            $unset: {
+                discount: 1,
+                oldPrice: 1,
+                valid_from: 1,
+                valid_to: 1
+            }
+        })
+        resolve()
+
+
+
+    })
+
+},
+
+
+expireOffer: () => {
+    return new Promise(async (resolve, reject) => {
+
+        let allProducts = await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+
+
+
+
+        let length = allProducts.length
+
+        for (let i = 0; i < length; i++) {
+            if (allProducts[i].discount) {
+
+                let current_date = moment(new Date()).format("MM/DD/YYYY");
+
+                current_date = Date.parse(current_date)
+                let valid_date = Date.parse(allProducts[i].valid_to)
+
+                console.log("KAREDN<<<OLd", current_date, valid_date);
+                if (current_date > valid_date) {
+
+                    console.log("ith suucess aaayi");
+                    db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(allProducts[i]._id) }, {
+                        $set: {
+                            price: allProducts[i].oldPrice
+                        },
+                        $unset: {
+                            discount: 1,
+                            oldPrice: 1,
+                            valid_from: 1,
+                            valid_to: 1
+                        }
+                    })
+                }
+            }
+        }
+
+    })
+},  
+ getcoupon: () => {
+    return new Promise(async (resolve, reject) => {
+
+       db.get().collection(collection.COUPON_COLLECTION).find().toArray().then((result) => {
+          resolve(result)
+       })
+    })
+ },
+
+
+ createCoupons: (offer, coupon) => {
+    return new Promise(async (resolve, reject) => {
+       db.get().collection(collection.COUPON_COLLECTION).insertOne({ offer: offer, coupon: coupon, status: true }).then((result) => {
+          resolve(result)
+       })
+
+
+    })
+ },
+ deactivateCoupon: (couponId) => {
+    return new Promise(async (resolve, reject) => {
+       db.get().collection(collection.COUPON_COLLECTION ).removeOne({ _id: ObjectID(couponId) }).then((result) => {
+          resolve(result)
+       })
+    })
+ },
+
 
 
 

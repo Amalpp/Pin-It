@@ -72,7 +72,7 @@
                             <div class="col-md-4 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input name="price" placeholder="Price" class="form-control" type="text">
+                                    <input name="price" placeholder="Price" class="form-control" type="number">
                                 </div>
                             </div>
                         </div>
@@ -269,6 +269,7 @@
             // get result to data uri
             let imgSrc = cropper.getCroppedCanvas({
                 width: 300 // img disp value
+               
             }).toDataURL();
             $("#exampleModalCenter").modal("hide");
             console.log('src', imgSrc)
@@ -316,6 +317,7 @@
                 // get result to data uri
                 let imgSrc = cropper.getCroppedCanvas({
                     width: 300 // img disp value
+                     
                 }).toDataURL();
                 $("#exampleModalCenter").modal("hide");
                 console.log('src', imgSrc)
