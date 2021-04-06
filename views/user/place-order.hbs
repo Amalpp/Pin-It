@@ -8,8 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 
-<script
-  src="https://www.paypal.com/sdk/js?client-id=AXCYt_xCh1RQeq3VBd79TVwRrn58jdYVaC2czZ3m_wRE5UhWdFx5agm7I_GS2x0ysPzryfeA9JQTCqu6&disable-funding=credit,card"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AXCYt_xCh1RQeq3VBd79TVwRrn58jdYVaC2czZ3m_wRE5UhWdFx5agm7I_GS2x0ysPzryfeA9JQTCqu6&disable-funding=credit,card"></script>
     <title>Document</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
@@ -171,7 +171,7 @@
             <h2>Product Order Form</h2>
         </div>
         <div class="d-flex">
-            <form id="checkout-form" action="" method="">
+            <form id="checkout-form">
                 <label>
                     <span class="fname">First Name <span class="required">*</span></span>
                     <input type="text" id="firstname" name="firstname">
@@ -192,9 +192,10 @@
                 <label>
                     <span>Postcode / ZIP <span class="required">*</span></span>
                     <input type="text" id="pincode" name="pincode">
+                  
                 </label>
                 <input type="text" name="userId" id="" value="{{user._id}}" hidden>
-
+                    <input type="number" id="total" name="total" value="{{total}}" hidden>
 
 
 
@@ -206,7 +207,7 @@
                         <p>{{this.details.firstname}}<br>
                             {{this.details.address}}<br>
                             {{this.details.city}} <br>
-                            {{this.details.state}} <br> 
+                            {{this.details.state}} <br>
                             {{this.details.pincode}}</p>
                         <button style="width:20em; background-color: #53ccee;" type="submit" onclick="Passaddress('{{this.details.firstname}}',
                                     '{{this.details.address}}',
@@ -217,44 +218,81 @@
                     </div>
                     {{/each}}
                 </div>
+               
+
 
                 <div class="Yorder">
+
+
+
                     <table>
                         <tr>
+                            <th>
+                               
+                            </th>
+                            <th>
                             <td>Total :</td>
-                            <td> {{total}}</td>
+                            <td><span id="grandTotal">{{total}} </span></td>
+                            </th>
                         </tr>
+
                     </table><br>
+
                     <div>
                         <input type="radio" name="payment-method" value="COD" checked> COD
                     </div>
-            <div class="custom-control custom-radio">
-            <input id="paypal" name="payment-method" type="radio" value="paypal" class="custom-control-input" required>PayPal
-            <label class="custom-control-label" for="paypal"></label>
-            <div id="paypal-payment-button"></div>
-            </div>
-
-            <div class="custom-control custom-radio">
-            <input id="debit" name="payment-method" value="Razor_Pay" type="radio" class="custom-control-input" required>Razor Pay
-            <label class="custom-control-label" for="debit"></label>
-            </div>
-
-                            
-                        </span>
-                    <button style="width: 20rem;" type="submit" class="btn btn-info float-right">Submit</button>
-                     <a style="width: 20rem;" class="btn btn-info float-right" href="/adress">Add new
-                        address</a>
-    
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="payment-method" type="radio" value="paypal"
+                            class="custom-control-input" required>PayPal
+                        <label class="custom-control-label" for="paypal"></label>
+                        <div id="paypal-payment-button"></div>
                     </div>
-                   
+
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="payment-method" value="Razor_Pay" type="radio"
+                            class="custom-control-input" required>Razor Pay
+                        <label class="custom-control-label" for="debit"></label>
+                    </div>
 
 
-
-                    
-                    {{!-- <a class="btn btn-info" href="">Place Order</button> --}}
+                    </span>
+                    <button style="width: 20rem;" type="submit" class="btn btn-info float-right">Submit</button>
+                    <a style="width: 20rem;" class="btn btn-info float-right" href="/adress">Add new
+                        address</a>
+ </form>
                 </div>
 
+
+ <div class="input-group" style="padding-top: 52%;">
+
+                                    <input type="text" class="form-control" id="input-coupon" name="coupon"
+                                        placeholder="Promo code">
+                                    <div class="input-group-append">
+                                        <button type="coupon" id="coupon-code" onclick="applyCoupons()"
+                                            class="btn btn-secondary">Reedem code</button>
+
+                                    </div>
+                                    <p id="success" style="display: none; color: red;"><strong>*suucess coupon
+                                            applied</strong></p>
+                                    <p id="used" style="display: none; color: red;"><strong>*coupon is alreadey used
+                                            cannot apply</strong></p>
+                                    <p id="invalid" style="display: none; color: red;"><strong>*invalid coupon try the
+                                            correct couopon code</strong></p>
+                                </div>
+
+
+
+                {{!-- <a class="btn btn-info" href="">Place Order</button> --}}
         </div>
+
+    </div>
+   
+
+
+
+
+
+
     </div>
 </body>
 
@@ -283,7 +321,7 @@
                 alert(response)
                 if (response.codSuccess) {
                     location.href = '/order-success'
-                }else if (response.paypal) {
+                } else if (response.paypal) {
                     console.log('hi')
                     paypal.Buttons({
                         createOrder: function (data, actions) {
@@ -349,9 +387,65 @@
                 payment,
                 order
             },
-            method: 'post'
+            method: 'post',
+            success:(response)=>{
+                 if(response.status){
+                     location.href = '/order-success'
+                 }else{
+                     alert('Payment Failed ')
+                 }
+            }
         })
     }
+
+
+
+    function applyCoupons() {
+        console.log("jfdslk")
+        let couponis = $("#input-coupon").val()
+
+        $.ajax({
+            url: '/verifyCoupon',       
+            data: {
+                couponis
+            },
+            method: 'post',
+            success: (response) => {
+                alert("lkfds")
+
+                if (response.status == 0) {
+
+                    $('#success').show()
+                    $('#used').hide()
+                    $('#invalid').hide()
+                    let totalAmount = document.getElementById('grandTotal').innerHTML
+                    let discountPrice = totalAmount * (100 - response.offer) / 100
+
+                    document.getElementById('grandTotal').innerHTML = discountPrice
+                    document.getElementById('total').value = discountPrice
+                    console.log("dsddsss", discountPrice)
+                }
+                else if (response.status == 2) {
+                    $('#used').show()
+                    $('#success').hide()
+                    $('#invalid').hide()
+                }
+                else if (response.status == 1) {
+                    $('#invalid').show()
+                    $('#used').hide()
+                    $('#success').hide()
+                }
+
+            }
+        })
+
+
+
+    }
+
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </html>

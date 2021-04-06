@@ -184,6 +184,8 @@
                         <th>mobile</th>
                        
                         <th>Action</th>
+                        <th>edit</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -205,7 +207,11 @@
                            
                                <a href="/block/{{this._id}}" class="btn btn-danger" type="submit" >block  </a>
                             {{/if}}
-                            <a href="edit?id={{this._id}}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                            </td>
+                            <td>
+                                 <a href="/edit/{{this._id}}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                            </td>
+                           <td>
                             <a href="/delete/{{this._id}}" class="delete" title="Delete" onclick="return confirm('are you want to delete{{this.Name}}?')"  data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                         </td>
                     </tr>

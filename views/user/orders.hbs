@@ -6,7 +6,7 @@
     <div class="page-content">
    
        
-<table id="example" class="table table-striped table-bordered" style="width:100%">
+<table id="example" class="table table-striped table-bordered" style="width:100%; ">
         <thead>
             <tr>
                 <th>No</th>
@@ -16,7 +16,7 @@
                 <th>mobile</th>
                 <th>Total Amount</th>
                 <th>status</th>
-                <th>View Products</th>
+         
                 
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                 <td>{{this.status}}</td>
              
                
-                <td><a href="/view-order-products/{{this._id}}" class="btn btn-primary" type="submit">view Products</a></td>
+                {{!-- <td><a href="/view-order-products/{{this._id}}" class="btn btn-primary" type="submit">view Products</a></td> --}}
                 
             </tr>
         {{/each}}

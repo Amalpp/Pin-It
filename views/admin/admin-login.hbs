@@ -39,7 +39,7 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                                <form class="form-horizontal" action="admin-login" method="POST">
+                                <form id="myform" class="form-horizontal" action="admin-login" method="POST">
 
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
@@ -97,5 +97,21 @@
         </div>
     </div>
     <!-- end account-pages -->
+<script>
+   $(document).ready(function () {
 
-   
+    $('#myform').validate({ // initialize the plugin
+        rules: {
+            username: {
+                required: true,
+             
+            },
+            password: {
+                required: true,
+                minlength: 3
+            }
+        }
+    });
+
+});
+</script>

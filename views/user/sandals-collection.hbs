@@ -1,0 +1,132 @@
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="/casual">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Casuals
+										</a>
+									</h4>
+								</div>
+								
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="/sports">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Sports Shoes
+										</a>
+									</h4>
+								</div>
+							
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="/formal">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Formal Shoes
+										</a>
+									</h4>
+								</div>
+								
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="/sneakers">Sneakers</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="/flipfloap">FlipFlop</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="/sandals">Sandals</a></h4>
+								</div>
+							</div>
+							
+						</div><!--/category-productsr-->
+					
+				
+						
+						
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items</h2>
+
+                        {{#each sandals}}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="product-image/{{this._id}}1.jpg" alt="" />
+                                        <h2 style="font-weight: bold;">{{this.productname}}</h2>
+                                        <p>{{this.discription}}</p>
+										<p>   ₹ {{this.price}}</p>
+										
+                                        <p> Size: {{this.size}}</p>
+										<li><button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
+									</div>
+									
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="/product-details/{{this._id}}"><i class="fa fa-plus-square"></i>View Product</a></li>
+										
+                                        <li><button onclick="addToCart('{{this._id}}')" type="button" class="fa fa-plus-square">Add to cart</button></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+                        {{/each}}
+						</div>
+                    </div>
+						
+						<ul class="pagination">
+							<li class="active"><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li>
+							<li><a href="">&raquo;</a></li>
+						</ul>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+    <script>
+		function addToCart(proId){
+			console.log("jofsad")
+    $.ajax ({
+        url:'/add-to-cart/'+proId,
+        method:'GET',
+        success:(response)=>{
+            if(response.status){
+                let count=$('#cart-count').html()
+                count=parseInt(response.cartCount)
+                $("#cart-count").html(count)
+            }
+           
+        }
+    })
+}
+	</script>

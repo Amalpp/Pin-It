@@ -9,7 +9,7 @@ var moment = require('moment');
 
 module.exports={
     addProduct:(product,callback)=>{
-        console.log(product)
+    
         db.get().collection('product').insertOne(product).then((data)=>{
     
             callback (data.ops[0]._id)
@@ -20,7 +20,7 @@ module.exports={
         return new Promise(async(resolve,reject)=>{
             let products= await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
             resolve(products)
-            console.log(products);
+        
         })
     },
     deleteProduct:(prodId)=>{
@@ -76,7 +76,7 @@ addCategory: (category) => {
 },
 getAllCategory: () => {
     return new Promise(async (resolve, reject) => {
-        console.log('amal');
+       
 
         let category = await db.get().collection(CATEGORY_COLLECTION).find().toArray()
 
@@ -149,7 +149,7 @@ getAllorders:(orderId)=>{
     })
 },
 approveOrders:(orderId,keyword)=>{
-    console.log("HIII KEYY",keyword);
+
     return new Promise(async(resolve,reject)=>{
        await  db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{
             
@@ -163,7 +163,7 @@ approveOrders:(orderId,keyword)=>{
 },
 viewOrders:(orderId)=>{
     return new Promise(async(resolve,reject)=>{
-        console.log("next",orderId);
+ 
     let prod= await db.get().collection(collection.ORDER_COLLECTION).aggregate([
         {
             $match:{_id:objectId(orderId)}
@@ -193,7 +193,7 @@ viewOrders:(orderId)=>{
 
         }
     ]).toArray()
-    console.log("this ethi",prod);
+ 
     resolve(prod)
 })
 
@@ -255,7 +255,7 @@ getOrderReport: () => {
             response.total[i] = graphData[i].total
         }
         resolve(response)
-        console.log("ReS IS", response);
+   
 
     })
 },
@@ -263,7 +263,7 @@ getUserCount:()=>{
     return new Promise(async(resolve,reject)=>{
        
         let userCount=await db.get().collection(collection.USER_COLLECTION).find().count()
-        console.log("count",userCount);
+ 
         resolve(userCount)
     })
 },
@@ -289,7 +289,7 @@ gettotalProduct:()=>{
 getConfirmOrder:()=>{
     return new Promise(async(resolve,reject)=>{
         let  shippedOrder=await db.get().collection(collection.ORDER_COLLECTION).find({status:'confirm'}).count()
-        console.log("hii",shippedOrder);
+
         resolve(shippedOrder)
       })
 },
@@ -321,7 +321,6 @@ totalRevenue: () => {
        let dto = moment(to).format("DD/MM/YYYY");
      
 
-console.log("dsdddddddddddddddddd",dfrom,dto);
 
        let salesReport = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
           {
@@ -343,7 +342,7 @@ console.log("dsdddddddddddddddddd",dfrom,dto);
              }
           }
        ]).toArray()
-       console.log("dssssssssssssssssssssss",salesReport)
+
        resolve(salesReport)
 
     })
@@ -356,7 +355,7 @@ console.log("dsdddddddddddddddddd",dfrom,dto);
 
 
         db.get().collection(collection.PRODUCT_COLLECTION).find({ discount: { $exists: true } }).toArray().then((products) => {
-            console.log("count und" ,products);
+          
             resolve(products)
         })
     })
@@ -394,6 +393,7 @@ addOfferToProduct:(prodId,data)=>{
                      valid_to:data.valid_to
                  }
              }).then((data) => {
+                 console.log("eeeeeeeeeeeeeeeee",data);
                  resolve(data)
              })
          })
@@ -405,31 +405,30 @@ addOfferToProduct:(prodId,data)=>{
 
 
 
-
  addOfferToCategory: (category, data) => {
     return new Promise(async (resolve, reject) => {
-        console.log("npppp", data);
-        console.log("ccccccccc", category);
-        let products = await db.get().collection(collection.CATEGORY_COLLECTION).find({ category: category }).toArray()
+   
+        let products = await db.get().collection(collection.PRODUCT_COLLECTION).find({ category: category }).toArray()
 
-        console.log("$$$$$$$$$$$$$$$$$", products);
+  
         let length = products.length
-        console.log("lengthhthth", length);
+ 
 
         for (i = 0; i < length; i++) {
             let offer = data.discount
 
             let discounted_rate = products[i].price - (products[i].price * offer) / 100
 
-            let updated = db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(products[i]._id) }, {
+            let updated =await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(products[i]._id) }, {
                 $set: {
                     discount: offer,
                     oldPrice: products[i].price,
                     price: discounted_rate,
-                    valid_from: data.valid_from,
-                    valid_to: data.valid_to
+                    valid_from: moment(data.valid_from).format("DD-MM-YYYY"),
+                    valid_to:moment( data.valid_to).format("DD-MM-YYYY")
                 }
             }).then((data)=>{
+            
                
                 resolve(data)    
             })
@@ -489,10 +488,10 @@ expireOffer: () => {
                 current_date = Date.parse(current_date)
                 let valid_date = Date.parse(allProducts[i].valid_to)
 
-                console.log("KAREDN<<<OLd", current_date, valid_date);
+      
                 if (current_date > valid_date) {
 
-                    console.log("ith suucess aaayi");
+           
                     db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: ObjectID(allProducts[i]._id) }, {
                         $set: {
                             price: allProducts[i].oldPrice
@@ -537,6 +536,49 @@ expireOffer: () => {
     })
  },
 
+ searchProduct: (keyword) => {
+
+    return new Promise((resolve, reject) => {
+        let result = db.get().collection(collection.PRODUCT_COLLECTION).find({ name: { $regex: keyword, $options: '$i' } }).toArray()
+        if (result[0]) {
+
+            resolve(result)
+        }
+        else {
+            result = db.get().collection(collection.PRODUCT_COLLECTION).find({ category: { $regex: keyword, $options: '$i' } }).toArray().then((result) => {
+
+                if (result[0]) {
+                    resolve(result)
+               
+                }
+                else {
+                    result = db.get().collection(collection.PRODUCT_COLLECTION).find({ manufacturer: { $regex: keyword, $options: '$i' } }).toArray().then((result) => {
+                        if (result[0]) {
+                            resolve(result)
+                           
+                        }
+                        else {
+                            result = db.get().collection(collection.PRODUCT_COLLECTION).find({ description: { $regex: keyword, $options: "$i" } }).toArray().then((result) => {
+
+                                if (result[0]) {
+                                    resolve(result)
+                                 
+                                }
+                                else {
+                                    reject(result);
+                                
+                                }
+                            })
+
+                        }
+                    })
+                }
+            })
+        }
+
+
+    })
+}
 
 
 

@@ -17,7 +17,7 @@ const verifyLogin = (req, res, next) => {
 
   }
   else {
-    console.log("dsf");
+
     res.redirect('/admin')
   }
 }
@@ -27,14 +27,14 @@ router.get('/admin',async function (req, res, next) {
   let sess = req.session.name
   if (sess) {
     let usercount=await productHelpers.getUserCount()
-    console.log("usercount",usercount);
+  
     let ordercount=await productHelpers.getOrderCount()
     let cancelled_orders=await productHelpers.getOrderCount()
     let totalProducts =await productHelpers.gettotalProduct()
     let completed_orders=await productHelpers.getConfirmOrder()
     let Revenue=await productHelpers.totalRevenue()
     let monthsales = await productHelpers.ordersGraph()
-    console.log("month sale",monthsales);
+  
     res.render('admin/admin-home', { admin: true, sess,usercount,ordercount,cancelled_orders,totalProducts,completed_orders,Revenue, monthsales})
   }
   else {
@@ -81,7 +81,7 @@ router.get('/user-management', (req, res) => {
   let ses = req.session.name
   if (ses) {
     userHelpers.getAllUser().then((data) => {
-      console.log("sfd", data);
+    
       res.render('admin/user-management', { admin: true, data, ses })
     });
 
@@ -93,20 +93,20 @@ router.get('/user-management', (req, res) => {
 router.get('/delete/:id', verifyLogin, (req, res) => {
 
   let proId = req.params.id
-  console.log(proId)
+
   userHelpers.deleteUser(proId).then((response) => {
     res.redirect('/user-management')
   })
 
 });
-router.get('/edit/', verifyLogin, async (req, res) => {
-  console.log("start");
-  let user = await userHelpers.getuserDetails(req.query.id)
+router.get('/edit/:id', verifyLogin, async (req, res) => {
+  
+  let user = await userHelpers.getuserDetails(req.params.id)
   res.render('admin/edit-user', { admin: true, user })
 });
 router.post('/edit/:id', (req, res) => {
   userHelpers.updateuser(req.params.id, req.body).then(() => {
-    console.log('gtyf');
+   
     res.redirect('/user-management')
 
   })
@@ -130,9 +130,9 @@ router.get('/unblock/:id', verifyLogin, (req, res) => {
 // view product
 
 router.get('/product-management', verifyLogin, function (req, res) {
-  console.log("dsnfkuhoihhinf");
+
   productHelpers.getAllProduct().then((products) => {
-    console.log("proname",products);
+   
     res.render('admin/product-management', { admin: true, products });
   })
 });
@@ -145,25 +145,6 @@ router.get('/add-product', verifyLogin, function (req, res) {
 });
 
 
-// router.post('/add-product', verifyLogin, function (req, res) {
-
-//   req.body.price = parseInt(req.body.price)
-//   productHelpers.addProduct(req.body, (id) => {
-//     console.log(req.body);
-//     let image = req.files.image
-
-//     image.mv('./public/product-image/' + id + '.jpg', (err) => {
-//       if (!err) {
-//         console.log('hushfiu');
-//         res.redirect('/product-management')
-//       } else {
-//         console.log(err)
-//       }
-//     })
-
-//   })
-
-// });
 
 
 
@@ -179,13 +160,13 @@ router.post('/add_product', verifyLogin ,(req, res) => {
 
 
     var base64Str1 = req.body.imageBase64Data1
-    console.log('ithaanalle',base64Str1);
+  
     var path = "./public/product-image/";
     var optionalObj = { fileName: id+'1', type: "jpg" };
     base64ToImage(base64Str1, path, optionalObj);
 
     var base64Str2 = req.body.imageBase64Data2
-    console.log('ithaanalle',base64Str2);
+  
     var path = "./public/product-image/";
     var optionalObj = { fileName: id+'2', type: "jpg" };
     base64ToImage(base64Str2, path, optionalObj);
@@ -207,23 +188,22 @@ router.post('/add_product', verifyLogin ,(req, res) => {
 router.get('/deleteProduct/:id', verifyLogin, (req, res) => {
 
   let prodId = req.params.id
-  console.log(prodId)
-  console.log('fdsfds');
+
   productHelper.deleteProduct(prodId).then((response) => {
     res.redirect('/product-management')
   })
 
 });
 router.get('/edit-product/:id', verifyLogin, async (req, res) => {
-  console.log("start");
-  let products = await productHelper.getprodDetails(req.params.id)
-  console.log("id adymmmmmmmm");
+ 
+  let products = await productHelpers.getprodDetails(req.params.id)
+
   res.render('admin/edit-product', { admin: true, products })
-  console.log("product",products);
+
 });
 
 router.post('/edit-product/:id', verifyLogin, (req, res) => {
-  console.log("id ethiiiiiii",req.params.id)
+ 
 
   productHelper.updateProduct(req.params.id, req.body).then(() => {
     res.redirect('/product-management')
@@ -243,7 +223,7 @@ router.get('/add-category', verifyLogin, ((req, res) => {
 router.post('/add-category', ((req, res) => {
 
   productHelper.addCategory(req.body).then(() => {
-    console.log('sdfs', req.body);
+
     res.redirect("/category-management")
   })
 
@@ -297,7 +277,7 @@ router.get('/delete-category/:id', (req, res) => {
 
 router.get('/category-management', verifyLogin, ((req, res) => {
   productHelper.getAllCategory().then((category) => {
-    console.log('dsfds');
+
     res.render('admin/category-management', { admin: true, category })
   })
 }))
@@ -332,9 +312,9 @@ router.get("/view-order/:id",async (req,res)=>{
   let ses = req.session.name
   if (ses) {
     let orderId=req.params.id
-  console.log("ordere",req.body);
+
   productHelpers.viewOrders(orderId).then((prod)=>{
-    console.log("last",prod)
+ 
     res.render("admin/view-orders",{prod,admin:true,ses})
   })
   }
@@ -350,7 +330,7 @@ router.get("/view-order/:id",async (req,res)=>{
 router.get("/saleReport",(req,res)=>{
   productHelpers.getOrderReport().then(async(result)=>{
     let monthsales = await productHelpers.ordersGraph()
-console.log("ssssssssssssssssssssssssssssssss",monthsales);
+
     res.render('admin/reports', { admin: true, result, monthsales })
   })
   
@@ -358,7 +338,7 @@ console.log("ssssssssssssssssssssssssssssssss",monthsales);
 router.post('/findReportbyDate', verifyLogin, (req, res) => {
 
   productHelpers.getOrderByDate(req.body).then((response) => {
-    console.log("yeah its wrking", response);
+
     res.render('admin/viewSalesByDate', { admin: true, response })
   })
 
@@ -369,7 +349,7 @@ router.post('/findReportbyDate', verifyLogin, (req, res) => {
 router.get('/create-offer-ByCategory', verifyLogin, async(req, res) => {
 
   productHelper.getAllCategory().then((category) => {
-    console.log("cats", category);
+
     res.render('admin/add-offers', { admin: true, category })
   })
 })
@@ -377,7 +357,7 @@ router.get('/create-offer-ByCategory', verifyLogin, async(req, res) => {
 router.post('/create-offer-ByCategory', verifyLogin, (req, res) => {
 
   let catId = req.body.category
-  console.log("evide", catId);
+
   productHelper.addOfferToCategory(catId, req.body).then((data) => {
     res.redirect('/offers')
   })
@@ -404,9 +384,9 @@ router.get('/create-offer', verifyLogin, async (req, res) => {
 });
 
 router.post('/create-offer', verifyLogin, (req, res) => {
-  console.log("entanu ulllth",req.body);
+
   let prodId = req.body.product
-  console.log("fddddddddddddddddddd");
+ 
   productHelpers.addOfferToProduct(prodId , req.body).then((data) => {
     res.redirect('/offers')
   });
@@ -419,7 +399,7 @@ router.post('/create-offer', verifyLogin, (req, res) => {
   
     let prodId = req.params.id
     productHelpers.deleteOffer(prodId).then((data) => {
-      console.log("ffffffffffffffffffffffffffff",data);
+     
   
       res.redirect('/offers')
     })
@@ -449,7 +429,7 @@ router.post('/create-offer', verifyLogin, (req, res) => {
       count: 1
     })
     let voucherCode = voucher[0]
-    console.log("jjjj",voucherCode);
+   
     res.send(voucherCode)
   })
 
@@ -468,7 +448,7 @@ router.post('/create-offer', verifyLogin, (req, res) => {
   router.get('/delete-coupon/:id', async (req, res) => {
 
     await productHelpers.deactivateCoupon(req.params.id).then(() => {
-      console.log("dkd");
+ 
       res.redirect('/coupon')
     })
   

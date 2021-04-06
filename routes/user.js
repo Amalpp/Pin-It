@@ -18,28 +18,45 @@ const verifyuser = (req, res, next) => {
 
 
 
+
+
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   let ses = req.session.loggedIn
   let cartCount = null
+  let userfound = req.session.user
 
   if (ses) {
-
-    cartCount = await userHelpers.getCartCount(req.session.user._Id)
+    console.log("icivdik");
+    cartCount = await userHelpers.getCartCount(userfound._id)
+  }
+  else {
+    console.log("in e;se");
   }
   productHelpers.getAllProduct().then((products) => {
+    userHelpers.getCasualCollection().then((casual) => {
+      userHelpers.getSneakersCollection().then((sneakers) => {
+        userHelpers.getFormalCollection().then((formal) => {
+          userHelpers.getSandalsCollection().then((sandals) => {
+            userHelpers.getFipFlopCollection().then((flip) => {
+              userHelpers.getSportsCollection().then((sports) => {
 
-    if (ses) {
+                if (ses) {
 
-      console.log('count', cartCount);
+                  console.log("csartjkjdggfgfl", cartCount);
 
-      res.render('user/index', { user: true, ses, products, cartCount })
+                  res.render('user/index', { user: true, ses, products, cartCount, casual, sneakers, formal, sandals, flip, sports })
 
-    }
-    else {
-      res.render("user/index", { user: true, products })
-    }
-
+                }
+                else {
+                  res.render("user/index", { user: true, products, casual, sneakers, formal, sandals, flip, sports })
+                }
+              })
+            })
+          })
+        })
+      })
+    })
   })
 
 
@@ -47,7 +64,7 @@ router.get('/', async function (req, res, next) {
 
 router.get('/product-details/:id', verifyuser, async (req, res) => {
   let prodId = req.params.id
-  console.log('tyiou', prodId);
+
   let cartCount = await userHelpers.getCartCount(req.session.user._Id)
   let data = productHelpers.singleProduct(prodId).then((product) => {
     let ses = req.session.user
@@ -66,12 +83,12 @@ router.get('/login', function (req, res, next) {
 
   let ses = req.session.loggedIn
   if (ses) {
-    console.log('hiii');
+
     res.redirect('/')
   }
   else {
 
-    res.render('user/user-login', { user: true })
+    res.render('user/user-login', { "logginErr": req.session.logginErr })
     req.session.logginErr = false
   }
 
@@ -79,9 +96,10 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   userHelpers.doLogin(req.body).then((response) => {
     if (response.status) {
-      req.session.loggedIn = true;
 
       req.session.user = response.user
+      req.session.loggedIn = true;
+
       res.redirect('/')
     } else {
       req.session.logginErr = 'Invalid username or Password'
@@ -96,27 +114,19 @@ router.post('/login', function (req, res, next) {
 });
 
 
-// router.get("/otplogin",(req,res)=>{
-//   client
-//     .verify
-//     .service(config.serviceID)
-//     .verifications
-//     .create({
-//       to:"+91${req.query.phonenumber}",
-//       channel:"sms"
-//     }).then((data)=>{
-//       res.render('user/user')
-//     })
 
-// })
+
+
+
+
 
 router.get('/userOTPLogin', (req, res) => {
-  console.log("start");
+
   res.render('user/userOTPLogin', { user: true, "phoneErr": req.session.phone })
   req.session.phone = false
 })
 router.post('/userOTPLogin', (req, res) => {
-  console.log("post ethi", req.body.mobile);
+
   userHelpers.OtpRequest(req.body.mobile).then((number) => {
     req.session.otpPhone = number
     twilio
@@ -140,13 +150,11 @@ router.post('/userOTPLogin', (req, res) => {
 })
 
 router.get('/userOTPSubmit', (req, res) => {
-  console.log("submit kerii");
+
   res.render('user/userOTPSubmit', { user: true })
 
 })
 router.post('/userOTPSubmit', (req, res) => {
-  console.log("otpsubmit");
-  console.log("this is body", req.body, req.session.otpPhone);
   twilio
     .verify
     .services(otp.serviceID)
@@ -155,9 +163,9 @@ router.post('/userOTPSubmit', (req, res) => {
       to: `+91${req.session.otpPhone}`,
       code: req.body.Otp
     }).then((data) => {
-      console.log("then", data);
+
       if (data.valid) {
-        console.log("if kerii")
+
         userHelpers.getuserOtp(req.session.otpPhone).then((user) => {
           req.session.user = user
           req.session.loggedIn = true
@@ -166,7 +174,7 @@ router.post('/userOTPSubmit', (req, res) => {
         req.session.otpPhone = null
       }
       else {
-        console.log("uyihjkiolkjilkhikjhiujh");
+
         res.redirect('/userOTPSubmit')
       }
 
@@ -203,18 +211,11 @@ router.post('/user-signup', function (req, res, next) {
 
 
   userHelpers.dosignup(req.body).then((response) => {
-
-
-
-
-    req.session.loggedIn = true;
-
     req.session.user = response.user
+    req.session.loggedIn = true;
     res.redirect('/')
 
   }).catch((user) => {
-
-
     let amal = true
     res.render("user/user-login", { amal: true })
 
@@ -225,10 +226,15 @@ router.post('/user-signup', function (req, res, next) {
 
 
 
+
+
 router.get('/logout', (req, res) => {
   req.session.loggedIn = false
   res.redirect('/')
 })
+
+
+
 
 
 
@@ -251,7 +257,7 @@ router.get('/cart', verifyuser, async (req, res) => {
 
 
 router.get('/add-to-cart/:id', verifyuser, (req, res) => {
-  console.log(('addcart'));
+
   let response = {}
   userHelpers.addToCart(req.params.id, req.session.user._id).then(async () => {
     response.cartCount = await userHelpers.getCartCount(req.session.user._id)
@@ -281,12 +287,18 @@ router.post('/change-product-quantity', (req, res, next) => {
 })
 
 
+
+
+
+
+
 router.get('/place-order', verifyuser, async (req, res) => {
   var total = await userHelpers.getTotalAmount(req.session.user._id)
   let address = await userHelpers.getAllAddress(req.session.user._id)
 
   let ses = req.session.loggedIn
   if (ses) {
+    console.log("hiiiiiiiiiiiiiiiiiiiiiiii", ses);
     res.render('user/place-order', { ses, total, address, user: req.session.user, })
   }
 })
@@ -295,9 +307,12 @@ router.get('/place-order', verifyuser, async (req, res) => {
 
 
 
+
+
+
 router.post('/place-order', async (req, res) => {
   let products = await userHelpers.getCartProductList(req.body.userId)
-  let totalPrice = await userHelpers.getTotalAmount(req.body.userId)
+  let totalPrice = req.body.total
   userHelpers.placeOrder(req.body, products, totalPrice).then((orderId) => {
     if (req.body['payment-method'] === 'COD') {
       res.json({ codSuccess: true })
@@ -316,7 +331,10 @@ router.post('/place-order', async (req, res) => {
 
   })
 
-  console.log("body", req.body);
+
+
+
+
 
 })
 router.get("/adress", verifyuser, async (req, res) => {
@@ -326,6 +344,8 @@ router.get("/adress", verifyuser, async (req, res) => {
   }
   res.render("user/add-adress", { ses, cartCount })
 })
+
+
 
 
 
@@ -342,6 +362,8 @@ router.post("/adress", verifyuser, (req, res) => {
 
 
 
+
+
 router.get('/order-success', verifyuser, (req, res) => {
   let ses = req.session.loggedIn
   if (ses) {
@@ -351,39 +373,46 @@ router.get('/order-success', verifyuser, (req, res) => {
 
 
 
+
+
 router.get('/orders', verifyuser, async (req, res) => {
   let ses = req.session.loggedIn
   if (ses) {
     let id = req.session.user._id
-    console.log("userid ond", id);
+
     let orders = await userHelpers.getUserOrders(id)
-    console.log('order', orders)
+
     res.render('user/orders', { user: req.session.user, orders, ses })
   }
 })
 
 
 
-router.get('/view-order-products/:id', async (req, res) => {
-  let ses = req.session.loggedIn
-  if (ses) {
-    let products = await userHelpers.getOrderProducts(req.params.id)
 
-    res.render('user/view-order-products', { user: req.session.user, products, ses })
-  }
+
+
+router.get('/view-order-products/:id', async (req, res) => {
+
+  let products = await userHelpers.getOrderProducts(req.params.id)
+
+  res.render('user/view-order-products', { user: req.session.user, products })
+
 })
 
 
 
+
+
+
 router.post('/verify-payment', verifyuser, (req, res) => {
-  console.log(req.body);
+
   userHelpers.verifyPayment(req.body).then(() => {
     userHelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {
-      console.log("payment successfull");
+
       res.json({ status: true })
     })
   }).catch((err) => {
-    res.json({ status: 'Payment Failed' })
+    res.json({ status: false, errMsg: "payment Failed" })
   })
 })
 
@@ -397,11 +426,14 @@ router.post('/verify-payment', verifyuser, (req, res) => {
 
 
 router.post("/deleteCartProduct/", (req, res) => {
-  console.log("delete ", req.body);
+
   userHelpers.deleteCartProduct(req.body).then((response) => {
-  res.json(response)
+    res.json(response)
   })
 })
+
+
+
 
 
 router.get("/user-profile", verifyuser, async (req, res) => {
@@ -412,11 +444,154 @@ router.get("/user-profile", verifyuser, async (req, res) => {
     res.render("user/user-profile", { user: req.session.user, ses, profile })
   }
 })
-router.get("/edit-profile/:id",(req,res)=>{
 
-    res.render("user/edit-user")
- 
+
+
+
+router.get("/edit-profile/:id", (req, res) => {
+
+  res.render("user/edit-user")
+
 })
+
+
+
+
+
+router.post('/verifyCoupon', (req, res) => {
+
+
+  let coupon = req.body.couponis
+  let user = req.session.user._id
+
+  userHelpers.verifyCoupon(coupon, user).then((response) => {
+
+    res.json(response)
+
+  })
+})
+
+
+
+
+
+router.get('/edit-user ', verifyuser, async (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    let id = req.session.user._id
+
+    let user = await userHelpers.getuserDetails(id)
+    res.render('admin/edit-userProfile', { ses, user })
+  }
+
+});
+router.post("/appy-coupon", async (req, res) => {
+  let userId = req.session.user._id
+
+
+  let coupon = userHelpers.checkValidCoupon(req.body)
+
+  if (coupon) {
+    let discount = coupon.discount
+
+    let totalPrice = await userHelpers.getTotalAmount(req.body.userId, discount)
+  }
+
+
+})
+
+
+
+
+
+router.get('/casual', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getCasualCollection().then((casual) => {
+
+
+      res.render('user/casual-collection', {
+        ses,
+        casual
+
+      })
+    })
+  }
+
+})
+
+
+
+
+
+router.get('/sports', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getSportsCollection().then((sports) => {
+
+
+      res.render('user/sports-collection', { sports, ses })
+    })
+  }
+})
+
+
+
+
+router.get('/formal', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getFormalCollection().then((formal) => {
+
+
+      res.render('user/formal-collection', { formal, ses })
+    })
+  }
+})
+
+
+
+
+router.get('/sneakers', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getSneakersCollection().then((sneakers) => {
+
+
+      res.render('user/sneakers-collection', { sneakers, ses })
+    })
+  }
+})
+
+router.get('/sandals', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getSandalsCollection().then((sandals) => {
+
+
+      res.render('user/sandals-collection', { sandals, ses })
+    })
+  }
+})
+
+
+
+router.get('/flipflop', verifyuser, (req, res) => {
+  let ses = req.session.loggedIn
+  if (ses) {
+    userHelpers.getFipFlopCollection().then((flip) => {
+
+
+      res.render('user/flipflop-collection', { flip, ses })
+    })
+  }
+})
+
+
+
+
+
+
 
 
 module.exports = router;

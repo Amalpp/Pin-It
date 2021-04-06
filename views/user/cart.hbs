@@ -7,8 +7,8 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
+			<div class="table-responsive cart_info" >
+				<table class="table table-condensed" >
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
@@ -23,8 +23,8 @@
 						{{#each products}}
 						<tr>
 						
-							<td class="cart_product">
-								<a href=""><img src="/product-image/{{this.products ._id}}.jpg" alt=""></a>
+							<td class="cart_product" style="height: min-content;">
+								<a href=""><img src="/product-image/{{this.products ._id}}1.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">{{this.products.productname}}</a></h4>
@@ -77,8 +77,10 @@
 							<li>Total <span id="total">{{total}}</span></li>
 							
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
+							<a class="btn btn-default update" href="/">back</a>
+							{{#if products}}
 							<a class="btn btn-default check_out" href="/place-order">Check Out</a>
+							{{/if}}
 					</div>
 				</div>
 			

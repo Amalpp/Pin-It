@@ -310,8 +310,8 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>BuY</span>-HiGH</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<h2 style="color: rgb(242, 154, 40);">AFFORDABLE FASHION AT YOUR FINGERTIPS</h2>
+									<p> BuY -HiGH offers you the ideal combination of fashion and functionality for men, women and kids</p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
@@ -322,8 +322,8 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>BuY</span>-HiGH</h1>
-									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<h2 style="color: rgb(97, 192, 164);">BEST ONLINE SHOPPING SITE IN INDIA FOR FOOTWEAR</h2>
+									<p>If you would like to experience the best of online shopping for men, women and kids in India, you are at the right place. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
@@ -335,8 +335,8 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>BuY</span>-HiGH</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<h2 style="color: rgb(248, 215, 28);">TRENDING IN FOOTWEAR</h2>
+									<p>Enjoy the hassle-free experience as you shop comfortably from your home or your workplace. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
@@ -370,51 +370,64 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+										<a data-toggle="collapse" data-parent="#accordian" href="/casual">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sportswear
+										Casuals
 										</a>
 									</h4>
 								</div>
+								
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
+										<a data-toggle="collapse" data-parent="#accordian" href="/sports">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Mens
+											Sports Shoes
 										</a>
 									</h4>
 								</div>
-							</div>	
+							
+							</div>
+							
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
+										<a data-toggle="collapse" data-parent="#accordian" href="/formal">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
+											Formal Shoes
 										</a>
 									</h4>
 								</div>
+								
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Kids</a></h4>
+									<h4 class="panel-title"><a href="/sneakers">Sneakers</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
+									<h4 class="panel-title"><a href="/flipfloap">FlipFlop</a></h4>
 								</div>
 							</div>
-						</div><!--/category-products-->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="/sandals">Sandals</a></h4>
+								</div>
+							</div>
+							
+						</div><!--/category-productsr-->
+					
+				
+						
+						
 						<div class="shipping text-center"><!--shipping-->
 							<img src="images/home/shipping.jpg" alt="" />
 						</div><!--/shipping-->
-					
+						
 					</div>
 				</div>
-				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
@@ -424,120 +437,147 @@
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="product-image/{{this._id}}1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-										</div>
+									<div class="productinfo text-center">
+										<img src="product-image/{{this._id}}1.jpg" alt="" />
+                                        <h2 style="font-weight: bold;">{{this.productname}}</h2>
+                                        <p>{{this.discription}}</p>
+										<p> <p><strike> ₹ {{this.oldPrice}}</strike> </p></p><p><b> ₹{{this.price}}</b></p>
+										
+                                        <p> Size: {{this.size}}</p>
+										<li><button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
+									</div>
+									
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>View Product</a></li>
-										<li><a href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a></li>
+										<li><a href="/product-details/{{this._id}}"><i class="fa fa-plus-square"></i>View Product</a></li>
+										
+                                        <li><button onclick="addToCart('{{this._id}}')" type="button" class="fa fa-plus-square">Add to cart</button></li>
 									</ul>
 								</div>
 							</div>
-						</div>	
+						</div>
 						{{/each}}
 					</div><!--features_items-->
 					
 					<div class="category-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-								<li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-								<li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-								<li><a href="#kids" data-toggle="tab">Kids</a></li>
-								<li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+								<li class="active"><a href="#tshirt" data-toggle="tab">Casuals</a></li>
+								<li><a href="#blazers" data-toggle="tab">Sports shoes</a></li>
+								<li><a href="#sunglass" data-toggle="tab">Formal shoes</a></li>
+								<li><a href="#kids" data-toggle="tab">sneakers</a></li>
+								<li><a href="#poloshirt" data-toggle="tab">FlipFlop</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="tshirt" >
+								{{#each casual}}
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<img src="product-image/{{this._id}}1.jpg" alt="" />
+												<h2>{{this.price}}</h2>
+												<p>{{this.productname}}</p>
+												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 											</div>
 											
 										</div>
 									</div>
 								</div>
+								{{/each}}
 							</div>
 							
 							<div class="tab-pane fade" id="blazers" >
+								{{#each sports}}
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<img src="product-image/{{this._id}}1.jpg" alt="" />
+												<h2>{{this.price}}</h2>
+												<p>{{this.productname}}</p>
+													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 											</div>
 											
 										</div>
 									</div>
 								</div>
+								{{/each}}
 							</div>
 							
 							<div class="tab-pane fade" id="sunglass" >
+								{{#each formal}}
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<img src="product-image/{{this._id}}1.jpg" alt="" />
+												<h2>{{this.price}}</h2>
+												<p>{{this.productname}}</p>
+												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 											</div>
 											
 										</div>
 									</div>
 								</div>
+								{{/each}}
 							</div>
 							
 							<div class="tab-pane fade" id="kids" >
+								{{#each sneakers}}
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<img src="product-image/{{this._id}}1.jpg" alt="" />
+												<h2>{{this.price}}</h2>
+												<p>{{this.productname}}</p>
+												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 											</div>
 											
 										</div>
 									</div>
 								</div>
+								{{/each}}
 							</div>
 							
 							<div class="tab-pane fade" id="poloshirt" >
+								{{#each flip}}
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<img src="product-image/{{this._id}}1.jpg" alt="" />
+												<h2>{{this.price}}</h2>
+												<p>{{this.productname}}</p>
+												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 											</div>
 											
 										</div>
 									</div>
+									
 								</div>
+								{{/each}}
 							</div>
 						</div>
 					</div><!--/category-tab-->
@@ -548,34 +588,48 @@
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item active">	
+									{{#each casual}}
 									<div class="col-sm-4">
+										
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<img src="product-image/{{this._id}}1.jpg" alt="" />
+													<h2>{{this.price}}</h2>
+													<p><strike>{{this.oldPrice}}</strike> </p>
+													<p>{{this.productname}}</p>
+													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button></li>
 												</div>
 												
 											</div>
 										</div>
+										
 									</div>
+									{{/each}}
 								</div>
 								<div class="item">	
+									{{#each formal}}
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<img src="product-image/{{this._id}}1.jpg" alt="" />
+													<h2>{{this.price}}</h2>
+													<p>{{this.oldPrice}}</p>
+													<p>{{this.productname}}</p>
+													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
+										            <i class="fa fa-shopping-cart"></i>
+										            Add to cart
+								                 	</button></li>
 												</div>
 												
 											</div>
 										</div>
 									</div>
+									{{/each}}
 								</div>
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
@@ -591,3 +645,26 @@
 			</div>
 		</div>
 	</section>
+	<script>
+		function addToCart(proId){
+			console.log("jofsad")
+    $.ajax ({
+        url:'/add-to-cart/'+proId,
+        method:'GET',
+        success:(response)=>{
+            if(response.status){
+                let count=$('#cart-count').html()
+                count=parseInt(response.cartCount)
+                $("#cart-count").html(count)
+            }
+           
+        }
+    })
+}
+	</script>
+	   <script src="/js/jquery.js"></script>
+	<script src="/js/price-range.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/main.js"></script>

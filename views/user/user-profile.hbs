@@ -395,22 +395,22 @@ ul.summary-list > li:last-child  {
               <a href="#">
                   <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
               </a>
-              <h1>Camila Smith</h1>
-              <p>deydey@theEmail.com</p>
+              <h1>{{profile.username}}</h1>
+              <p>{{profile.email}}</p>
           </div>
 
           <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-              <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li>
-              <li><a href="/edit-profile/{{this._id}}"> <i class="fa fa-edit"></i> Edit profile</a></li>
-          </ul>
+              <li><a href="/orders"> <i class="fa fa-calendar"></i> my orders <span class="label label-warning pull-right r-activity">9</span></a></li>
+                <li><a href="/edit-profile/{{this._id}}"> <i class='fa fa-edit'></i>edit user</a></li>
+            </ul>
       </div>
   </div>
   <div class="profile-info col-md-9">
       
       <div class="panel">
-          <div class="bio-graph-heading">
-              Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
+          <div class="bio-graph-heading" style="color: #707e6d; font-weight: bold;">
+            Enjoy the hassle-free experience as you shop comfortably from your home or your workplace. .
           </div>
           <div class="panel-body bio-graph-info">
            
@@ -418,7 +418,7 @@ ul.summary-list > li:last-child  {
               <div class="row">
                    
                   <div class="bio-row">
-                      <p><span>name </span>: </p>
+                      <p><span>name</span>: {{profile.username}}</p>
                   </div>
                   <div class="bio-row">
                       <p><span>email</span>: {{profile.email}} </p>

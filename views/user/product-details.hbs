@@ -1,427 +1,731 @@
 
-	
-	<section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="left-sidebar">
+					<h2>Category</h2>
+					<div class="panel-group category-products" id="accordian">
+						<!--category-productsr-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Sportswear
+									</a>
+								</h4>
+							</div>
+
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#mens">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Mens
+									</a>
+								</h4>
+							</div>
+							<div id="mens" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul>
+										<li><a href="">Fendi</a></li>
+										<li><a href="">Guess</a></li>
+										<li><a href="">Valentino</a></li>
+										<li><a href="">Dior</a></li>
+										<li><a href="">Versace</a></li>
+										<li><a href="">Armani</a></li>
+										<li><a href="">Prada</a></li>
+										<li><a href="">Dolce and Gabbana</a></li>
+										<li><a href="">Chanel</a></li>
+										<li><a href="">Gucci</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#womens">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Womens
+									</a>
+								</h4>
+							</div>
+							<div id="womens" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul>
+										<li><a href="">Fendi</a></li>
+										<li><a href="">Guess</a></li>
+										<li><a href="">Valentino</a></li>
+										<li><a href="">Dior</a></li>
+										<li><a href="">Versace</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Kids</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Fashion</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Households</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Interiors</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Clothing</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Bags</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="#">Shoes</a></h4>
+							</div>
+						</div>
+					</div>
+					<!--/category-products-->
+
+
+
+					<div class="price-range">
+						<!--price-range-->
+						<h2>Price Range</h2>
+						<div class="well">
+							<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
+								data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+							<b>$ 0</b> <b class="pull-right">$ 600</b>
+						</div>
+					</div>
+					<!--/price-range-->
+
+					<div class="shipping text-center">
+						<!--shipping-->
+						<img src="images/home/shipping.jpg" alt="" />
+					</div>
+					<!--/shipping-->
+
+				</div>
+			</div>
+
+			<div class="col-sm-9 padding-right">
+				<div class="product-details">
+					<!--product-details-->
+
+ <div class="col-sm-5">
+						<div class="view-product">
+							<img src="/product-image/{{product._id}}1.jpg" id="myimage" alt="" class="thumbnail zoom" />
+
+						</div>
+
+					
+
+					
+					
+						<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+							<a class="left item-control" href="#similar-product" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							</a>
+							<a class="right item-control" href="#similar-product" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="col-sm-7">
+						<div class="product-information">
+							<!--/product-information-->
+							<img src="/images/product-details/new.jpg" class="newarrival" alt="" />
+							<h2>{{product.productname}}</h2>
+
+
+							<span>
+								<span>Rs :{{product.price}}</span>
+								<label>Quantity:</label>
+								<input type="text" value="3" />
+
+							</span>
+							<p><b>Size:</b> {{prosuct.size}}</p>
+							<p><b>Condition:</b> New</p>
+							<p><b>Category:</b> {{product.category}}</p>
+							<p><b>Discription:</b> {{product.discription}}</p>
+							<img src="/images/product-details/rating.png" alt="" />
+
+						</div>
+
+						<button onclick="addToCart('{{product._id}}')" type="button" class="btn btn-fefault cart">
+							<i class="fa fa-shopping-cart"></i>
+							Add to cart
+						</button>
+						<!--/product-information-->
+
+					</div>
+
+				</div>
+				<!--/product-details-->
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer id="footer">
+	<!--Footer-->
+	<div class="footer-top">
 		<div class="container">
 			<div class="row">
+				<div class="col-sm-2">
+					<div class="companyinfo">
+						<h2><span>e</span>-shopper</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+					</div>
+				</div>
+
 				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Category</h2>
-						<div class="panel-group category-products"	 id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sportswear
-										</a>
-									</h4>
-								</div>
-							
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Mens
-										</a>
-									</h4>
-								</div>
-								<div id="mens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="">Fendi</a></li>
-											<li><a href="">Guess</a></li>
-											<li><a href="">Valentino</a></li>
-											<li><a href="">Dior</a></li>
-											<li><a href="">Versace</a></li>
-											<li><a href="">Armani</a></li>
-											<li><a href="">Prada</a></li>
-											<li><a href="">Dolce and Gabbana</a></li>
-											<li><a href="">Chanel</a></li>
-											<li><a href="">Gucci</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="">Fendi</a></li>
-											<li><a href="">Guess</a></li>
-											<li><a href="">Valentino</a></li>
-											<li><a href="">Dior</a></li>
-											<li><a href="">Versace</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Kids</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Households</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Interiors</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Clothing</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Shoes</a></h4>
-								</div>
-							</div>
-						</div><!--/category-products-->
-					
-						
-						
-						<div class="price-range"><!--price-range-->
-							<h2>Price Range</h2>
-							<div class="well">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b>$ 0</b> <b class="pull-right">$ 600</b>
-							</div>
-						</div><!--/price-range-->
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/shipping.jpg" alt="" />
-						</div><!--/shipping-->
-						
+					<div class="address">345768this is the new arrival
+						<img src="/images/home/map.png" alt="" />
+						<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 					</div>
 				</div>
-				
-				<div class="col-sm-9 padding-right">
-					<div class="product-details"><!--product-details-->
-                   
-						<div class="col-sm-5">
-							<div class="view-product">
-								<img src="/product-image/{{product._id}}.jpg" alt="" />
-								
-							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
-						
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div>
+			</div>
+		</div>
+	</div>
 
-						</div>
-                     
-						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<img src="/images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>{{product.productname}}</h2>
-								
-								
-								<span>
-									<span>Rs :{{product.price}}</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									
-								</span> 
-								<p><b>Size:</b> {{prosuct.size}}</p>
-								<p><b>Condition:</b> New</p>
-                                <p><b>Category:</b> {{product.category}}</p>
-								<p><b>Discription:</b> {{product.discription}}</p>
-								<img src="/images/product-details/rating.png" alt="" />
-								
-							</div>
-						
-							<button onclick="addToCart('{{product._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button><!--/product-information-->
-                                                
-						</div>
-  
-					</div><!--/product-details-->
-					
-					
-					
-						
-                     
-					
-					
-				</div>
+
+
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+				<p class="pull-right">Designed by <span><a target="_blank"
+							href="http://www.themeum.com">Themeum</a></span></p>
 			</div>
 		</div>
-	</section>
-	
-	<footer id="footer"><!--Footer-->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					
-					<div class="col-sm-3">
-						<div class="address">345768this is the new arrival
-							<img src="/images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-				</div>
-			</div>
-		</div>
-		
-	</footer><!--/Footer-->
-	
+	</div>
+
+</footer>
+<!--/Footer-->
+
 <script>
-		function addToCart(proId){
-			console.log("jofsad")
-    $.ajax ({
-        url:'/add-to-cart/'+proId,
-        method:'GET',
-        success:(response)=>{
-            if(response.status){
-                let count=$('#cart-count').html()
-                count=parseInt(response.cartCount)
-                $("#cart-count").html(count)
-            }
-           
-        }
-    })
+imageZoom("myimage","myresult");
+
+	function addToCart(proId) {
+		console.log("jofsad")
+		$.ajax({
+			url: '/add-to-cart/' + proId,
+			method: 'GET',
+			success: (response) => {
+				if (response.status) {
+					let count = $('#cart-count').html()
+					count = parseInt(response.cartCount)
+					$("#cart-count").html(count)
+				}
+
+			}
+		})
+	}
+</script>
+
+
+
+
+
+
+<script src="/js/jquery.js"></script>
+<script src="/js/price-range.js"></script>
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.prettyPhoto.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<style>
+/**THE SAME CSS IS USED IN ALL 3 DEMOS**/    
+/**gallery margins**/  
+ul.gallery{    
+margin-left: 3vw;     
+margin-right:3vw;  
+}    
+
+.zoom {      
+-webkit-transition: all 0.35s ease-in-out;    
+-moz-transition: all 0.35s ease-in-out;    
+transition: all 0.35s ease-in-out;     
+cursor: -webkit-zoom-in;      
+cursor: -moz-zoom-in;      
+cursor: zoom-in;  
+}     
+
+.zoom:hover,  
+.zoom:active,   
+.zoom:focus {
+/**adjust scale to desired size, 
+add browser prefixes**/
+-ms-transform: scale(2.5);    
+-moz-transform: scale(2.5);  
+-webkit-transform: scale(2.5);  
+-o-transform: scale(2.5);  
+transform: scale(2.5);    
+position:relative;      
+z-index:100;  
 }
-	</script>
-  
 
+/**To keep upscaled images visible on mobile, 
+increase left & right margins a bit**/  
+@media only screen and (max-width: 768px) {   
+ul.gallery {      
+margin-left: 15vw;       
+margin-right: 15vw;
+}
 
-    <script src="/js/jquery.js"></script>
-	<script src="/js/price-range.js"></script>
-    <script src="/js/jquery.scrollUp.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.prettyPhoto.js"></script>
-    <script src="/js/main.js"></script>
+/**TIP: Easy escape for touch screens,
+give gallery's parent container a cursor: pointer.**/
+.DivName {cursor: pointer}
+}
+
+</style>
 </body>
+
 </html>
 
 
-{{!-- 
-<!--Section: Block Content-->
-<section class="mb-5">
 
-  <div class="row">
-    <div class="col-md-6 mb-4 mb-md-0">
 
-      <div id="mdb-lightbox-ui"></div>
 
-      <div class="mdb-lightbox">
+   {{!-- <script type="text/javascript">
+            	 var demoTrigger = document.querySelector('.demo-trigger');
+var paneContainer = document.querySelector('.detail');
 
-        <div class="row product-gallery mx-1">
-
-          <div class="col-12 mb-0">
-            <figure class="view overlay rounded z-depth-1 main-img">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
-                data-size="710x823">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
-                  class="img-fluid z-depth-1">
-              </a>
-            </figure>
-            <figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                data-size="710x823">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                  class="img-fluid z-depth-1">
-              </a>
-            </figure>
-            <figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
-                data-size="710x823">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
-                  class="img-fluid z-depth-1">
-              </a>
-            </figure>
-            <figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
-              <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
-                data-size="710x823">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
-                  class="img-fluid z-depth-1">
-              </a>
-            </figure>
-          </div>
-          <div class="col-12">
-            <div class="row">
-              <div class="col-3">
-                <div class="view overlay rounded z-depth-1 gallery-item">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                    class="img-fluid">
-                  <div class="mask rgba-white-slight"></div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="view overlay rounded z-depth-1 gallery-item">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
-                    class="img-fluid">
-                  <div class="mask rgba-white-slight"></div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="view overlay rounded z-depth-1 gallery-item">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
-                    class="img-fluid">
-                  <div class="mask rgba-white-slight"></div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="view overlay rounded z-depth-1 gallery-item">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
-                    class="img-fluid">
-                  <div class="mask rgba-white-slight"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="col-md-6">
-
-      <h5>Fantasy T-shirt</h5>
-      <p class="mb-2 text-muted text-uppercase small">Shirts</p>
-      <ul class="rating">
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="fas fa-star fa-sm text-primary"></i>
-        </li>
-        <li>
-          <i class="far fa-star fa-sm text-primary"></i>
-        </li>
-      </ul>
-      <p><span class="mr-1"><strong>$12.99</strong></span></p>
-      <p class="pt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit
-        error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio,
-        officia quis dolore quos sapiente tempore alias.</p>
-      <div class="table-responsive">
-        <table class="table table-sm table-borderless mb-0">
-          <tbody>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Model</strong></th>
-              <td>Shirt 5407X</td>
-            </tr>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Color</strong></th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th class="pl-0 w-25" scope="row"><strong>Delivery</strong></th>
-              <td>USA, Europe</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <hr>
-      <div class="table-responsive mb-2">
-        <table class="table table-sm table-borderless">
-          <tbody>
-            <tr>
-              <td class="pl-0 pb-0 w-25">Quantity</td>
-              <td class="pb-0">Select size</td>
-            </tr>
-            <tr>
-              <td class="pl-0">
-                <div class="def-number-input number-input safari_only mb-0">
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                    class="minus"></button>
-                  <input class="quantity" min="0" name="quantity" value="1" type="number">
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                    class="plus"></button>
-                </div>
-              </td>
-              <td>
-                <div class="mt-1">
-                  <div class="form-check form-check-inline pl-0">
-                    <input type="radio" class="form-check-input" id="small" name="materialExampleRadios"
-                      checked>
-                    <label class="form-check-label small text-uppercase card-link-secondary"
-                      for="small">Small</label>
-                  </div>
-                  <div class="form-check form-check-inline pl-0">
-                    <input type="radio" class="form-check-input" id="medium" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary"
-                      for="medium">Medium</label>
-                  </div>
-                  <div class="form-check form-check-inline pl-0">
-                    <input type="radio" class="form-check-input" id="large" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary"
-                      for="large">Large</label>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
-      <button type="button" class="btn btn-light btn-md mr-1 mb-2"><i
-          class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
-    </div>
-  </div>
-
-</section>
-<!--Section: Block Content-->
-<script>
-	$(document).ready(function () {
-  // MDB Lightbox Init
-  $(function () {
-    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-  });
+new Drift(demoTrigger, {
+  paneContainer: paneContainer,
+  inlinePane: false,
 });
-</script> --}}
+            	</script>
+            	<style type="text/css">
+            	.demo-area{
+  background:$color_invert_fg;
+  border-radius:8px;
+  padding:20px;
+  section{
+    padding-top:0;
+  }
+}
+
+.demo-trigger {
+  display: inline-block;
+  width: 30%;
+  float: left;
+}
+
+.detail {
+  position: relative;
+  width: 65%;
+  margin-left: 5%;
+  float: left;
+  button{
+    vertical-align:middle;
+    opacity:.5;
+    cursor:unset;
+    background:$color_invert_chrome_tint;
+    margin-left:1em;
+  }
+}
+
+
+@media (max-width: 610px) {
+
+  .detail, .demo-trigger {
+    float: none;
+  }
+
+  .demo-trigger {
+    display:block;
+    width: 50%;
+    max-width:200px;
+    margin: 0 auto;
+  }
+
+  .detail {
+    margin: 0;
+    width: auto;
+  }
+
+  p {
+    margin: 0 auto 1em;
+  }
+
+  .responsive-hint {
+    display: none;
+  }
+  h3 {
+    margin-top:20px;
+  }
+}
+            	</style>
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="left-sidebar">
+					<h2>Category</h2>
+					<div class="panel-group category-products" id="accordian">
+						<!--category-productsr-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="/casual">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Casuals
+									</a>
+								</h4>
+							</div>
+
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="/sports">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Sports Shoes
+									</a>
+								</h4>
+							</div>
+
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="/formal">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										Formal Shoes
+									</a>
+								</h4>
+							</div>
+
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/sneakers">Sneakers</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/flipfloap">FlipFlop</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/sandals">Sandals</a></h4>
+							</div>
+						</div>
+
+					</div>
+					<!--/category-productsr-->
+
+
+
+				</div>
+			</div>
+
+			<div class="col-sm-9 padding-right">
+				{{!-- <div class="product-details">
+					<!--product-details-->
+					<div class="col-sm-5">
+						<div class="view-product">
+							<img src="/product-image/{{product._id}}1.jpg" alt="" />
+							<h3>ZOOM</h3>
+
+
+
+						
+
+					</div>
+					<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+						<!-- Wrapper for slides -->
+							 <div class="carousel-inner">
+								<div class="item active" style="width: 5px;height:5px;">
+									<a href=""><img style="width:5px; height: 5px;" src="/product-image/{{product._id}}2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+								</div>
+								<div class="item">
+									<a href=""><img src="/product-image/{{product._id}}2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+								</div>
+								<div class="item">
+									<a href=""><img src="/product-image/{{product._id}}2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
+									<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+								</div>
+
+							</div> 
+
+						<!-- Controls -->
+						<a class="left item-control" href="#similar-product" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a class="right item-control" href="#similar-product" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+				<div class="col-sm-7">
+					<div class="product-information">
+						<!--/product-information-->
+						<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+						<h2>{{product.productname}}</h2>
+						<p> {{product.discription}}</p>
+						<hr>
+						<span>
+							<span>Rs.{{product.price}}</span>
+							<span>{{product.oldPrice}}</span>
+
+
+						</span>
+
+						<p><b>Size: </b>{{product.size}}</p>
+						<p><b>Category:</b> {{product.category}}</p>
+						<p><b>Condition:</b> New</p>
+						<p><b>Discription: </p>
+
+						<hr>
+						<button onclick="addToCart('{{product._id}}')" type="button" class="btn btn-fefault cart">
+							<i class="fa fa-shopping-cart"></i>
+							Add to cart
+						</button>
+
+					</div>
+					<!--/product-information-->
+				</div> --}}
+
+
+{{!-- 
+
+
+  <section class="content">
+  <article class="demo-area">
+  <img class="demo-trigger" src="https://demos.imgix.net/wristwatch.jpg?w=200&ch=DPR&dpr=2&border=1,ddd" data-zoom="https://demos.imgix.net/wristwatch.jpg?w=1000&ch=DPR&dpr=2">
+  <div class="detail">
+   <section>
+      <h3>Men's Watch - Drift Demo</h3>
+      <p>Specifications:</p>
+      <ul>
+        <li>Hover over image</li>
+        <li>35 mm stainless steel case</li>
+        <li>Stainless link bracelet with buckle closure</li>
+        <li>Water resistant to 100m</li>
+      </ul>
+      <h4>$XX.XX <button>Add to Cart</button></h4>
+    </section>
+  </div>
+  </article>
+</section>
+<section class="content">
+  <article>
+     <h1>Drift</h1>
+    <p>This is a demo of Drift, a simple, lightweight, no-dependencies JavaScript "zoom on hover" tool from <a href="https://imgix.com">imgix</a>. Move your mouse over the image (or touch it) to see it in action. This demo uses the simple included theme, but it's very easy to extend and customize to fit your needs. You can <a href="https://github.com/imgix/drift">learn more and download it here</a>.</p>
+          <p class="responsive-hint">(Psst…&nbsp;try making your browser window smaller!)</p>
+     <div class="button-group">
+       <a href="https://github.com/imgix/luminous" class="button" target="_blank">View on github</a>
+       <a href="https://imgix.com" target="_blank" class="button">Visit imgix.com</a>
+    </div>
+  </article>
+</section>
+<footer>
+  <hr>
+<a href="https://imgix.com"><img src="https://assets.imgix.net/presskit/imgix-presskit.pdf?page=3&fm=png&w=320&dpr=2" width="160" height="60"></a>
+</footer>
+			</div>
+			<!--/product-details-->
+
+			<div class="category-tab shop-details-tab">
+				<!--category-tab-->
+				<div class="col-sm-12">
+					<ul class="nav nav-tabs">
+						<li><a href="#details" data-toggle="tab">Details</a></li>
+						<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
+						<li><a href="#tag" data-toggle="tab">Tag</a></li>
+						<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--/category-tab-->
+
+			<div class="recommended_items">
+				<!--recommended_items-->
+				<h2 class="title text-center">recommended items</h2>
+
+				<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/home/recommend1.jpg" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<button type="button" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!--/recommended_items-->
+
+		</div>
+	</div>
+	</div>
+</section>
+<script>
+	function addToCart(proId) {
+		console.log("jofsad")
+		$.ajax({
+			url: '/add-to-cart/' + proId,
+			method: 'GET',
+			success: (response) => {
+				if (response.status) {
+					let count = $('#cart-count').html()
+					count = parseInt(response.cartCount)
+					$("#cart-count").html(count)
+				}
+
+			}
+		})
+	}
+</script>
+<script>
+	imageZoom("myimage", "myresult");
+	function imageZoom(imgID, resultID) {
+		var img, lens, result, cx, cy;
+		img = document.getElementById(imgID);
+		result = document.getElementById(resultID);
+		/*create lens:*/
+		lens = document.createElement("DIV");
+		lens.setAttribute("class", "img-zoom-lens");
+		/*insert lens:*/
+		img.parentElement.insertBefore(lens, img);
+		/*calculate the ratio between result DIV and lens:*/
+		console.log("result.offsetWidth  >>>>>", result.offsetWidth, "lens.offsetWidth>>>>>>>>>>>", lens.offsetWidth);
+		cx = 300 / lens.offsetWidth;
+		console.log("result.offsetHeight>>>>>", result.offsetHeight, "llens.offsetHeighth>>>>>>>>>>>", lens.offsetHeight);
+		cy = 300 / lens.offsetHeight;
+		/*set background properties for the result DIV:*/
+		result.style.backgroundImage = "url('" + img.srcset + "')";
+		result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+		/*execute a function when someone moves the cursor over the image, or the lens:*/
+		lens.addEventListener("mousemove", moveLens);
+		img.addEventListener("mousemove", moveLens);
+		/*and also for touch screens:*/
+		lens.addEventListener("touchmove", moveLens);
+		img.addEventListener("touchmove", moveLens);
+		// img.addEventListener("mouseenter", bigImg);  
+
+
+
+		function bigImg(x) {
+			console.log("onmouseenter >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		}
+
+		function normalImg(x) {
+			//result.style.display ="none";
+			console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>onmousLEAVE");
+		}
+
+
+
+		function moveLens(e) {
+			var pos, x, y;
+			/*prevent any other actions that may occur when moving over the image:*/
+			e.preventDefault();
+			/*get the cursor's x and y positions:*/
+			pos = getCursorPos(e);
+			/*calculate the position of the lens:*/
+			x = pos.x - (lens.offsetWidth / 2);
+			y = pos.y - (lens.offsetHeight / 2);
+			// console.log("x" , x , "and Y " , y); 
+			/*prevent the lens from being positioned outside the image:*/
+			if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; } //else{img.addEventListener("mouseenter", bigImg);  }
+			if (x < 0) { x = 0; }
+			if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; img.addEventListener("mouseleave", normalImg); }//else{img.addEventListener("mouseenter", bigImg);  }
+			if (y < 0) { y = 0; }
+			/*set the position of the lens:*/
+			lens.style.left = x + "px";
+			lens.style.top = y + "px";
+			/*display what the lens "sees":*/
+			result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+		}
+		function getCursorPos(e) {
+			var a, x = 0, y = 0;
+			e = e || window.event;
+			/*get the x and y positions of the image:*/
+			a = img.getBoundingClientRect();
+			//console.log("------------------A  left" ,  a ); 
+			/*calculate the cursor's x and y coordinates, relative to the image:*/
+			x = e.pageX - a.left;
+			y = e.pageY - a.top;
+			/*consider any page scrolling:*/
+			x = x - window.pageXOffset;
+			y = y - window.pageYOffset;
+			return { x: x, y: y };
+		}
+
+	}
+
+	function hideme(x) {
+		//x.style.display = "none";
+
+	}
+	function showme(x) {
+		//x.style.display = "block";
+
+	}
+
+
+
+
+</script> --}} --}}
