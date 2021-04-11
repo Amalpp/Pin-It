@@ -7,6 +7,7 @@ var session= require('express-session');
 var fileUpload=require('express-fileupload');
 var hbs=require('express-handlebars');
 var bodyParser=require('body-parser');
+const dotenv=require('dotenv')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -17,7 +18,11 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine( 'hbs', hbs( { 
+app.engine( 'hbs', hbs
+({helpers:{
+  ifEquals: function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+}},
   extname: 'hbs', 
   defaultLayout: 'layout', 
   layoutsDir: __dirname + '/views/layout/',

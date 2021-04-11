@@ -79,7 +79,7 @@ a#scrollUp i {
 
 .contactinfo ul li a {
     font-size: 12px;
-    color: #696763;
+    color: #91daac;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -90,7 +90,7 @@ a#scrollUp i {
 .social-icons ul li a {
     border: 0 none;
     border-radius: 0;
-    color: #1fd163;
+    color: #a6d6b9;
     padding: 0px;
 }
 
@@ -199,10 +199,10 @@ a#scrollUp i {
 
 .shop-menu ul li a {
     background: #FFFFFF;
-    color: #696763;
+    color: #f3ad16;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 500;
     padding: 0;
     padding-right: 0;
     margin-top: 10px;
@@ -236,10 +236,10 @@ a#scrollUp i {
 }
 
 .mainmenu ul li a {
-    color: #696763;
+    color: #4f5757;
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
-    font-weight: 300;
+    font-weight: 700;
     padding: 0;
     padding-bottom: 10px;
 }
@@ -284,7 +284,7 @@ ul.sub-menu {
     position: absolute;
     top: 30px;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: #9e9c96fd;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -296,7 +296,7 @@ ul.sub-menu {
 }
 
 .dropdown ul.sub-menu li .active {
-    color: #FDB45E;
+    color: #f38a12;
     padding-left: 0;
 }
 
@@ -359,7 +359,7 @@ ul.sub-menu {
 }
 
 .companyinfo h2 span {
-    color: #FE980F;
+    color: #0c0a06;
 }
 
 .companyinfo p {
@@ -847,14 +847,14 @@ h2.title {
 }
 
 .productinfo h2 {
-    color: #FE980F;
+    color: #554124;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-weight: 700;
 }
 
 .product-overlay h2 {
-    color: #fff;
+    color: rgb(80, 67, 46);
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-weight: 700;
@@ -863,8 +863,8 @@ h2.title {
 .productinfo p {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    font-weight: 400;
-    color: #eba20f;
+    font-weight: 600;
+    color: #554b37;
 }
 
 .productinfo img {
@@ -876,7 +876,7 @@ h2.title {
 }
 
 .product-overlay {
-    background: rgba(130, 131, 127, 0.8);
+    background: rgba(168, 199, 75, 0.8);
     top: 0;
     display: none;
     height: 0;
@@ -923,7 +923,7 @@ h2.title {
 }
 
 .add-to-cart {
-    background: #7c7976;
+    background: #f0963c;
     border: 0 none;
     border-radius: 0;
     color: #e6e6c6;

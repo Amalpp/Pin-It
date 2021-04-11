@@ -3,11 +3,11 @@ const state={
     db:null
 }
 module.exports.connect=function(done){
-    const url='mongodb://localhost:27017'
+    // const url='mongodb://localhost:27017'
     const dbname='PinIt'
 
 
-    mongoClient.connect(url,(err,data)=>{
+    mongoClient.connect(process.env.MONGO_CONNECTION_URL,(err,data)=>{
         if(err) return  done(err)
         state.db=data.db(dbname)
         done()

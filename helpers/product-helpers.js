@@ -148,19 +148,86 @@ getAllorders:(orderId)=>{
         resolve(orders)
     })
 },
-approveOrders:(orderId,keyword)=>{
+// approveOrders:(orderId,keyword)=>{
 
-    return new Promise(async(resolve,reject)=>{
-       await  db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{
+//     return new Promise(async(resolve,reject)=>{
+//        await  db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{
             
-            $set:{
-                status:keyword
+//             $set:{
+//                 status:keyword
+//             }
+//         }).then((data)=>{
+//             resolve(data)
+//         })
+//     })
+// },
+
+
+
+
+confirmOrder: (orderId) => {
+    console.log('queriyil ethiye..', orderId);
+    return new Promise((resolve, reject) => {
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({
+            _id: objectId(orderId)
+        }, {
+            $set: {
+                status: 'confirmed'
             }
-        }).then((data)=>{
-            resolve(data)
         })
+        resolve(response)
     })
 },
+cancelOrder: (orderId) => {
+    console.log('queriyil ethiye..', orderId);
+    return new Promise((resolve, reject) => {
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({
+            _id: objectId(orderId)
+        }, {
+            $set: {
+                status: 'cancelled'
+            }
+        })
+        resolve(response)
+    })
+},
+shipOrder: (orderId) => {
+    console.log('queriyil ethiye..', orderId);
+    return new Promise((resolve, reject) => {
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({
+            _id: objectId(orderId)
+        }, {
+            $set: {
+                status: 'shipped'
+            }
+        })
+        resolve(response)
+    })
+},
+deliveredOrder: (orderId) => {
+    console.log('queriyil ethiye..', orderId);
+    return new Promise((resolve, reject) => {
+        db.get().collection(collection.ORDER_COLLECTION).updateOne({
+            _id: objectId(orderId)
+        }, {
+            $set: {
+                status: 'delivered'
+            }
+        })
+        resolve(response)
+    })
+},
+
+
+
+
+
+
+
+
+
+
+
 viewOrders:(orderId)=>{
     return new Promise(async(resolve,reject)=>{
  

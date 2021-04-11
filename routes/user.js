@@ -25,7 +25,7 @@ router.get('/', async function (req, res, next) {
   let ses = req.session.loggedIn
   let cartCount = null
   let userfound = req.session.user
-
+   console.log('pres',userfound);
   if (ses) {
     console.log("icivdik");
     cartCount = await userHelpers.getCartCount(userfound._id)
@@ -82,6 +82,7 @@ router.get('/product-details/:id', verifyuser, async (req, res) => {
 router.get('/login', function (req, res, next) {
 
   let ses = req.session.loggedIn
+  console.log('ses',ses);
   if (ses) {
 
     res.redirect('/')
@@ -95,6 +96,7 @@ router.get('/login', function (req, res, next) {
 })
 router.post('/login', function (req, res, next) {
   userHelpers.doLogin(req.body).then((response) => {
+    console.log("hii",response);
     if (response.status) {
 
       req.session.user = response.user
@@ -209,9 +211,11 @@ router.get('/user-signup', function (req, res, next) {
 
 router.post('/user-signup', function (req, res, next) {
 
-
+console.log('in signup');
   userHelpers.dosignup(req.body).then((response) => {
-    req.session.user = response.user
+    console.log('added',response);
+    
+    req.session.user = response
     req.session.loggedIn = true;
     res.redirect('/')
 
@@ -351,9 +355,12 @@ router.get("/adress", verifyuser, async (req, res) => {
 
 
 router.post("/adress", verifyuser, (req, res) => {
-
-  userHelpers.addAddress(req.body).then((details) => {
-
+console.log('hhhhh',req.body)
+let user=req.session.user._id
+console.log('hhhhssssssssssssssssssssh',user);
+  userHelpers.addAddress(req.body,user).then((details) => {
+   
+console.log("ggg",details);
     res.redirect("/place-order")
 
   })
@@ -391,13 +398,13 @@ router.get('/orders', verifyuser, async (req, res) => {
 
 
 
-router.get('/view-order-products/:id', async (req, res) => {
+// router.get('/view-order-products/:id', async (req, res) => {
 
-  let products = await userHelpers.getOrderProducts(req.params.id)
+//   let products = await userHelpers.getOrderProducts(req.params.id)
 
-  res.render('user/view-order-products', { user: req.session.user, products })
+//   res.render('user/view-order-products', { user: req.session.user, products })
 
-})
+// })
 
 
 
@@ -447,12 +454,26 @@ router.get("/user-profile", verifyuser, async (req, res) => {
 
 
 
+router.get("/edit-profile",(req,res)=>{
+  let ses=req.session.loggedIn
+  if(ses){
 
-router.get("/edit-profile/:id", (req, res) => {
+   let user= userHelpers.userDetailes(req.session.user._id).then(async(user)=>{
+     let id=req.session.user._id
 
-  res.render("user/edit-user")
+     let address= await userHelpers.getAllAddress(id).then((address)=>{
+       console.log("ddddddddddd",address);
+      res.render("user/edit-profile",{ses,user,address})
+     })
+   
+   })
+    
+  }
 
 })
+
+
+
 
 
 
@@ -475,16 +496,9 @@ router.post('/verifyCoupon', (req, res) => {
 
 
 
-router.get('/edit-user ', verifyuser, async (req, res) => {
-  let ses = req.session.loggedIn
-  if (ses) {
-    let id = req.session.user._id
 
-    let user = await userHelpers.getuserDetails(id)
-    res.render('admin/edit-userProfile', { ses, user })
-  }
 
-});
+
 router.post("/appy-coupon", async (req, res) => {
   let userId = req.session.user._id
 
@@ -588,9 +602,39 @@ router.get('/flipflop', verifyuser, (req, res) => {
 })
 
 
+router.post('/search-product', (req, res) => {
 
+  let search = req.body.search
+  console.log("kk", search);
 
+  userHelpers.searchProduct(search)
 
+})
+
+router.post('/search', (req, res) => {
+
+  let keyword = req.body.search
+  let userfound = req.session.loggedIn
+
+console.log("jjjjjjjj",req.session.user);
+  userHelpers.searchProduct(keyword).then((products) => {
+    console.log("oooo",products);
+    if (userfound) {
+      res.render('user/allproducts', { products, userfound })
+    }
+    else {
+      res.render('user/allproducts', { products })
+    }
+  }).catch(() => {
+
+    if (userfound) {
+      res.render('user/allproducts', { noproducts: true, userfound })
+    }
+    else {
+      res.render('user/allproducts', { noproducts: true })
+    }
+  })
+})
 
 
 

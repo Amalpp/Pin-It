@@ -1,0 +1,83 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div style=" padding-top:10% " class="col-md-4 form group float-left">
+        <h1>User Profile</h1>
+        <div style="width: 20rem;">
+          <input class="form-control" name="email" style="margin-top: 25px;" type="text" value="{{details.username}}">
+        </div>
+        <div style="width: 20rem;">
+          <input class="form-control" name="email" style="margin-top: 25px;" type="text" value="{{details.email}}">
+        </div>
+        <div style="width: 20rem;">
+          <input class="form-control" name="email" style="margin-top: 25px;" type="text" value="{{details.number}}">
+        </div>
+
+      </div>
+      <div class="float-right col-md-4" style="padding-top: 10%;">
+        <form action="/changePassword" method="POST">
+        <h1>Change Password</h1>
+
+          <div style="width: 20rem;">
+            <div style="width: 20rem;">
+              <label>Your Current Password</label>
+              <input type="password" class="form-control" name="CurrentPassword" style="margin-top: 25px;" required />
+            </div>
+          </div>
+          <div>
+            <div style="width: 20rem;">
+              <label>New Password</label>
+              <input type="password" class="form-control" name="NewPassword" style="margin-top: 25px;" required />
+            </div>
+            {{#if psdSuccess}}
+            <p class="text-center text-success">{{psdSuccess}}</p>
+            {{/if}}
+            {{#if psdFailure}}
+            <p class="text-center text-danger">{{psdFailure}}</p>
+            {{/if}}
+          </div>
+
+          <div class="billing-back-btn">
+            <div class="billing-back">
+              <a href="" style="text-decoration: none;"><i class="icon-arrow-up-circle"></i> back</a>
+            </div>
+            <div class="billing-btn">
+              <input type="submit" class="btn btn-dark" value="Continue">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md-4 " style="padding-top: 6%;">
+
+        <h1 class="mt-5">ADDRESS</h1>
+        {{#each addresss}}
+        <div style="width: 20rem;">
+          <input class="form-control" name="address" style="margin-top: 25px;" type="text"
+            value="{{this.details.address}}">
+        </div>
+        <div style="width: 20rem;">
+          <input class="form-control" name="city" style="margin-top: 25px;" type="text" value="{{this.details.city}}">
+        </div>
+        <div style="width: 20rem;">
+          <input class="form-control" name="state" style="margin-top: 25px;" type="text" value="{{this.details.state}}">
+        </div>
+        <div style="width: 20rem;">
+          <input class="form-control" name="pincode" style="margin-top: 25px;" type="text"
+            value="{{this.details.pincode}}">
+        </div>
+        <div>
+          <a href="/editaddress/{{this._id}}" class="mt-5  btn btn-primary">
+            Edit Address
+          </a>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  </div>
+</main>
+
+
+<script>

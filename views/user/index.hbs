@@ -105,7 +105,7 @@
 								<div class="panel-body">
 
 								</div>
-							</div>
+							</div>1
 						</div>
 
 						<div class="panel panel-default">
@@ -285,386 +285,478 @@
 
 
 
-
-
-
-
+<div class="col-sm-4 agileits_search ml-auto">
+	<form class="form-inline" action="/search" method="POST">
+		<input 	 type="search" name="search" placeholder="Search" aria-label="Search"
+			required>
+		<button  type="submit"><i class="fa fa-search"></i></button>
+	</form>
+</div>
 
 
 
 
 
 	
-	<section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
-						</ol>
-						
+
+<section id="slider">
+	<!--slider-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#slider-carousel" data-slide-to="1"></li>
+						<li data-target="#slider-carousel" data-slide-to="2"></li>
+					</ol>
+
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="col-sm-6">
+								<h1><span>BuY</span>-HiGH</h1>
+								<h2 style="color: rgb(242, 154, 40);">AFFORDABLE FASHION AT YOUR FINGERTIPS</h2>
+								<p> BuY -HiGH offers you the ideal combination of fashion and functionality for men,
+									women and kids</p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
+								<img src="images/home/pricing.png" class="pricing" alt="" />
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-sm-6">
+								<h1><span>BuY</span>-HiGH</h1>
+								<h2 style="color: rgb(97, 192, 164);">BEST ONLINE SHOPPING SITE IN INDIA FOR FOOTWEAR
+								</h2>
+								<p>If you would like to experience the best of online shopping for men, women and kids
+									in India, you are at the right place. </p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
+								<img src="images/home/pricing.png" class="pricing" alt="" />
+							</div>
+						</div>RECOMMENDED ITEMS
+
+
+						<div class="item">
+							<div class="col-sm-6">
+								<h1><span>BuY</span>-HiGH</h1>
+								<h2 style="color: rgb(248, 215, 28);">TRENDING IN FOOTWEAR</h2>
+								<p>Enjoy the hassle-free experience as you shop comfortably from your home or your
+									workplace. </p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
+								<img src="images/home/pricing.png" class="pricing" alt="" />
+							</div>
+						</div>
+
+					</div>
+
+					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!--/slider-->
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="left-sidebar">
+					<h2>Category</h2>
+					<div class="panel-group category-products" id="accordian">
+						<!--category-productsr-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/casual">CASUALS</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/sports">SPORTS</a></h4>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/formal">FORMALS</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/sneakers">SNEAKERS</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a  href="/flipflop">FLIPFLOP</a></h4>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a href="/sandals">Sandals</a></h4>
+							</div>
+						</div>
+
+					</div>
+					<!--/category-productsr-->
+
+
+
+
+					<div class="shipping text-center">
+						<!--shipping-->
+						<img src="images/home/shipping.jpg" alt="" />
+					</div>
+					<!--/shipping-->
+
+				</div>
+			</div>
+			<div class="col-sm-9 padding-right">
+				<div class="features_items">
+					<!--features_items-->
+					<h2 class="title text-center">Features Items</h2>
+
+					{{#each products}}
+
+					<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+					{{/each}}
+				</div>
+				<!--features_items-->
+
+				<div class="category-tab">
+					<!--category-tab-->
+					<div class="col-sm-12">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tshirt" data-toggle="tab">Casuals</a></li>
+							<li><a href="#blazers" data-toggle="tab">Sports shoes</a></li>
+							<li><a href="#sunglass" data-toggle="tab">Formal shoes</a></li>
+							<li><a href="#kids" data-toggle="tab">sneakers</a></li>
+							<li><a href="#poloshirt" data-toggle="tab">FlipFlop</a></li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="tshirt">
+							{{#each casual}}
+							<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+							{{/each}}
+						</div>
+
+						<div class="tab-pane fade" id="blazers">
+							{{#each sports}}
+							<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+							{{/each}}
+						</div>
+
+						<div class="tab-pane fade" id="sunglass">
+							{{#each formal}}
+							<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+							{{/each}}
+						</div>
+
+						<div class="tab-pane fade" id="kids">
+							{{#each sneakers}}
+							<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+							{{/each}}
+						</div>
+
+						<div class="tab-pane fade" id="poloshirt">
+							{{#each flip}}
+							<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+							{{/each}}
+						</div>
+					</div>
+				</div>
+				<!--/category-tab-->
+
+				<div class="recommended_items">
+					<!--recommended_items-->
+					<h2 class="title text-center">recommended items</h2>
+
+					<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>BuY</span>-HiGH</h1>
-									<h2 style="color: rgb(242, 154, 40);">AFFORDABLE FASHION AT YOUR FINGERTIPS</h2>
-									<p> BuY -HiGH offers you the ideal combination of fashion and functionality for men, women and kids</p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png"  class="pricing" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>BuY</span>-HiGH</h1>
-									<h2 style="color: rgb(97, 192, 164);">BEST ONLINE SHOPPING SITE IN INDIA FOR FOOTWEAR</h2>
-									<p>If you would like to experience the best of online shopping for men, women and kids in India, you are at the right place. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png"  class="pricing" alt="" />
-								</div>
-							</div>
+								{{#each casual}}
+								<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
 							
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>BuY</span>-HiGH</h1>
-									<h2 style="color: rgb(248, 215, 28);">TRENDING IN FOOTWEAR</h2>
-									<p>Enjoy the hassle-free experience as you shop comfortably from your home or your workplace. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png" class="pricing" alt="" />
-								</div>
-							</div>
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
 							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
 						</div>
-						
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+					</div>
+								{{/each}}
+							</div>
+							<div class="item">
+								{{#each formal}}
+								<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="/product-details/{{this._id}}" ><img src="product-image/{{this._id}}1.jpg" alt="" /></a>
+									<h2 style="font-weight: bold;">{{this.productname}}</h2>
+									<p>{{this.discription}}</p>
+									
+							
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6>{{else }} <span class="badge badge-success">Discount -0%</span></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+							
+
+									<p> Size: {{this.size}}</p>
+									<button onclick="addToCart('{{this._id}}')" type="button"
+										class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</div>
+
+							</div>
+							<div class="choose">
+							
+							</div>
+						</div>
+					</div>
+								{{/each}}
+							</div>
+						</div>
+						<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
 						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+						<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
 							<i class="fa fa-angle-right"></i>
 						</a>
 					</div>
-					
 				</div>
+				<!--/recommended_items-->
+
 			</div>
 		</div>
-	</section><!--/slider-->
-	
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Category</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="/casual">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										Casuals
-										</a>
-									</h4>
-								</div>
-								
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="/sports">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sports Shoes
-										</a>
-									</h4>
-								</div>
-							
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="/formal">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Formal Shoes
-										</a>
-									</h4>
-								</div>
-								
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="/sneakers">Sneakers</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="/flipfloap">FlipFlop</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="/sandals">Sandals</a></h4>
-								</div>
-							</div>
-							
-						</div><!--/category-productsr-->
-					
-				
-						
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/shipping.jpg" alt="" />
-						</div><!--/shipping-->
-						
-					</div>
-				</div>
-				<div class="col-sm-9 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
+	</div>
+</section>
+<script>
+	function addToCart(proId) {
+		console.log("jofsad")
+		$.ajax({
+			url: '/add-to-cart/' + proId,
+			method: 'GET',
+			success: (response) => {
+				if (response.status) {
+					let count = $('#cart-count').html()
+					count = parseInt(response.cartCount)
+					$("#cart-count").html(count)
+				}
 
-						{{#each products}}
-
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="product-image/{{this._id}}1.jpg" alt="" />
-                                        <h2 style="font-weight: bold;">{{this.productname}}</h2>
-                                        <p>{{this.discription}}</p>
-										<p> <p><strike> ₹ {{this.oldPrice}}</strike> </p></p><p><b> ₹{{this.price}}</b></p>
-										
-                                        <p> Size: {{this.size}}</p>
-										<li><button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-default add-to-cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-									</div>
-									
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="/product-details/{{this._id}}"><i class="fa fa-plus-square"></i>View Product</a></li>
-										
-                                        <li><button onclick="addToCart('{{this._id}}')" type="button" class="fa fa-plus-square">Add to cart</button></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						{{/each}}
-					</div><!--features_items-->
-					
-					<div class="category-tab"><!--category-tab-->
-						<div class="col-sm-12">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#tshirt" data-toggle="tab">Casuals</a></li>
-								<li><a href="#blazers" data-toggle="tab">Sports shoes</a></li>
-								<li><a href="#sunglass" data-toggle="tab">Formal shoes</a></li>
-								<li><a href="#kids" data-toggle="tab">sneakers</a></li>
-								<li><a href="#poloshirt" data-toggle="tab">FlipFlop</a></li>
-							</ul>
-						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade active in" id="tshirt" >
-								{{#each casual}}
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="product-image/{{this._id}}1.jpg" alt="" />
-												<h2>{{this.price}}</h2>
-												<p>{{this.productname}}</p>
-												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								{{/each}}
-							</div>
-							
-							<div class="tab-pane fade" id="blazers" >
-								{{#each sports}}
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="product-image/{{this._id}}1.jpg" alt="" />
-												<h2>{{this.price}}</h2>
-												<p>{{this.productname}}</p>
-													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								{{/each}}
-							</div>
-							
-							<div class="tab-pane fade" id="sunglass" >
-								{{#each formal}}
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="product-image/{{this._id}}1.jpg" alt="" />
-												<h2>{{this.price}}</h2>
-												<p>{{this.productname}}</p>
-												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								{{/each}}
-							</div>
-							
-							<div class="tab-pane fade" id="kids" >
-								{{#each sneakers}}
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="product-image/{{this._id}}1.jpg" alt="" />
-												<h2>{{this.price}}</h2>
-												<p>{{this.productname}}</p>
-												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								{{/each}}
-							</div>
-							
-							<div class="tab-pane fade" id="poloshirt" >
-								{{#each flip}}
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="product-image/{{this._id}}1.jpg" alt="" />
-												<h2>{{this.price}}</h2>
-												<p>{{this.productname}}</p>
-												<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-											</div>
-											
-										</div>
-									</div>
-									
-								</div>
-								{{/each}}
-							</div>
-						</div>
-					</div><!--/category-tab-->
-					
-					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
-						
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									{{#each casual}}
-									<div class="col-sm-4">
-										
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="product-image/{{this._id}}1.jpg" alt="" />
-													<h2>{{this.price}}</h2>
-													<p><strike>{{this.oldPrice}}</strike> </p>
-													<p>{{this.productname}}</p>
-													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button></li>
-												</div>
-												
-											</div>
-										</div>
-										
-									</div>
-									{{/each}}
-								</div>
-								<div class="item">	
-									{{#each formal}}
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="product-image/{{this._id}}1.jpg" alt="" />
-													<h2>{{this.price}}</h2>
-													<p>{{this.oldPrice}}</p>
-													<p>{{this.productname}}</p>
-													<li>	<button onclick="addToCart('{{this._id}}')" type="button" class="btn btn-fefault cart">
-										            <i class="fa fa-shopping-cart"></i>
-										            Add to cart
-								                 	</button></li>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									{{/each}}
-								</div>
-							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
-						</div>
-					</div><!--/recommended_items-->
-					
-				</div>
-			</div>
-		</div>
-	</section>
-	<script>
-		function addToCart(proId){
-			console.log("jofsad")
-    $.ajax ({
-        url:'/add-to-cart/'+proId,
-        method:'GET',
-        success:(response)=>{
-            if(response.status){
-                let count=$('#cart-count').html()
-                count=parseInt(response.cartCount)
-                $("#cart-count").html(count)
-            }
-           
-        }
-    })
-}
-	</script>
-	   <script src="/js/jquery.js"></script>
-	<script src="/js/price-range.js"></script>
-    <script src="/js/jquery.scrollUp.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.prettyPhoto.js"></script>
-    <script src="/js/main.js"></script>
+			}
+		})
+	}
+</script>
+<script src="/js/jquery.js"></script>
+<script src="/js/price-range.js"></script>
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.prettyPhoto.js"></script>
+<script src="/js/main.js"></script>

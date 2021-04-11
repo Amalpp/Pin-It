@@ -39,6 +39,9 @@
                                 </a>
                             </div>
                             <div class="p-2">
+                                {{#if loginErr}}
+                                <p style="color: red;">invalid username or password</p>
+                                {{/if}}
                                 <form id="myform" class="form-horizontal" action="admin-login" method="POST">
 
                                     <div class="mb-3">
@@ -71,10 +74,7 @@
                                     </div>
 
 
-                                    <div class="mt-4 text-center">
-                                        <a href="auth-recoverpw.html" class="text-muted"><i
-                                                class="mdi mdi-lock me-1"></i> Forgot your password?</a>
-                                    </div>
+                                    
                                 </form>
                             </div>
 

@@ -58,7 +58,9 @@ router.get('/admin-login', function (req, res, next) {
     res.redirect('/admin')
   }
   else {
-    res.render('admin/admin-login', { admin: true })
+    let log=true
+    res.render('admin/admin-login', { admin: true,log,"loginErr":req.session.loginErr})
+    req.session.loginErr=false
   }
 
 })
@@ -300,13 +302,53 @@ router.get("/order-management", (req, res) => {
 
 
 })
-router.post("/order-management", (req, res) => {
-  let keyword = req.body.name
-  let orderId = req.body.orderId
-  productHelpers.approveOrders(orderId, keyword).then((data) => {
-    res.redirect("/order-management")
+// router.post("/order-management", (req, res) => {
+//   let keyword = req.body.name
+//   let orderId = req.body.orderId
+//   productHelpers.approveOrders(orderId, keyword).then((data) => {
+//     res.redirect("/order-management")
+//   })
+// })
+
+router.get('/confirm_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  productHelpers.confirmOrder(req.params.id).then(() => {
+    res.json(response)
   })
 })
+
+router.get('/cancel_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  productHelpers.cancelOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/ship_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  productHelpers.shipOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/delivered_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  productHelpers.deliveredOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get("/view-order/:id",async (req,res)=>{
   let ses = req.session.name

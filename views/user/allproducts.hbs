@@ -1,0 +1,80 @@
+
+
+
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">ALL PRODUCTS</li>
+				</ol>
+			</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>All <b>Products</b></h2>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+			<!-- Carousel indicators -->
+			 <ol class="carousel-indicators">
+				 {{#each pageNumber}}
+	<a href="/view-all-products?page={{this.page}}&limit=8">		<li data-target="view-all-products?page=2&limit=5" data-slide-to="0" class="active"></li></a>	
+				
+				{{/each}}
+			</ol>    
+			<!-- Wrapper for carousel items -->
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="row">
+									
+			{{#if noproducts}}
+			<h2 style="text-align: center;">   ---     No products were found :( </h1>
+						{{/if}}
+
+{{#each products}}
+
+						<div class="col-sm-3">
+							
+							<div class="thumb-wrapper">
+								<div class="img-box">
+								
+						<a href="/product-details/{{this._id}}" >		<img src="product-image/{{this._id}}1.jpg" class="img-fluid" alt=""></a>	
+								</div>
+								<div class="thumb-content">
+									<h4>{{this.name}} {{#if this.discount}}<span class="badge badge-success">Discount -{{this.discount}}%</span></h6></h4>	{{/if}}
+								{{#if this.discount}}	<p class="item-price"><strike>₹{{this.oldPrice}}</strike> <span>₹{{this.price}}</span></p>
+								{{else }}   <p class="item-price"> <span>₹{{this.price}}</span></p>        {{/if}}
+								
+									<div class="star-rating">
+										<ul class="list-inline">
+											<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+										</ul>
+									</div>
+									{{!-- <a href="addtoCart(product)" class="btn btn-primary">Add to Cart </a> --}}
+									<button class="btn btn-primary" onclick="addtoCart('{{this._id}}')"> add to cart</button>
+								</div>					
+							</div>
+						</div>		
+                        {{/each}}
+						
+		
+						
+					</div>
+				</div>
+			</div>
+			<!-- Carousel controls -->
+			{{!-- <a class="carousel-control-prev" href="view-all-products?page=&limit=5" data-slide="prev">
+				<i class="fa fa-angle-left"></i>
+			</a>
+			<a class="carousel-control-next" href="view-all-products?page=2&limit=5" data-slide="next">
+				<i class="fa fa-angle-right"></i>
+			</a> --}}
+		</div>
+		</div>
+	</div>
+</div>  

@@ -1,8 +1,18 @@
-<div class="page-content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+</head>
+<body>
+    <div class="page-content">
     <div class="container-fluid" style="max-width: 960px ; margin:auto ; float: right">
         <div class="row " style="margin;">
             <form class="well form-horizontal"  action="/create-offer-ByCategory" method="post"
-                id="add-product">
+                id="myform">
                 <fieldset>
                     <legend>
                         <center>
@@ -34,8 +44,8 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="discount" name="discount" type="number" placeholder="discount"
-                                    class="form-control validate" required>
+                                <input id="discount" name="discount" type='number' max='100' maxlength='2' pattern='^[0-9]$'
+                                    class="form-control validate" >
                             </div>
                         </div>
                     </div>
@@ -82,3 +92,23 @@
         </div>
     </div>
 </div><!-- /.container -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#myform" ).validate({
+  rules: {
+    discount: {
+      required: true
+      max='100'
+    }
+  }
+});
+</script>
+</body>
+</html>

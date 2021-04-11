@@ -1,127 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
-/* css class for the edit profile generated errors */
-.profilepress-edit-profile-status {
-  width: 400px;
-  text-align: center;
-  background-color: #e74c3c;
-  color: #ffffff;
-  border: medium none;
-  border-radius: 4px;
-  font-size: 17px;
-  font-weight: normal;
-  line-height: 1.4;
-  padding: 8px 5px;
-  margin: auto;
-}
-
-.memo-edprofile-success {
-  width: 400px;
-  text-align: center;
-  background-color: #2ecc71;
-  color: #ffffff;
-  border: medium none;
-  border-radius: 4px;
-  font-size: 17px;
-  font-weight: normal;
-  line-height: 1.4;
-  padding: 8px 5px;
-  margin: auto;
-}
-
-#sc-edprofile {
-  background: #f0f0f0;
-  width: 400px;
-  margin: 0 auto;
-  margin-top: 8px;
-  margin-bottom: 2%;
-  transition: opacity 1s;
-  -webkit-transition: opacity 1s;
-}
-
-#sc-edprofile h1 {
-  background: #3399cc;
-  padding: 20px 0;
-  font-size: 140%;
-  font-weight: 300;
-  text-align: center;
-  color: #fff;
-}
-
-div#sc-edprofile .sc-container {
-  background: #f0f0f0;
-  padding: 6% 4%;
-}
-
-div#sc-edprofile input[type="email"],
-div#sc-edprofile input[type="text"],
-div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
-  width: 92%;
-  background: #fff;
-  margin-bottom: 4%;
-  border: 1px solid #ccc;
-  padding: 4%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 95%;
-  color: #555;
-}
-
-div#sc-edprofile select {
-  width: 100%;
-}
-
-div#sc-edprofile textarea {
-  height: 100px;
-}
-
-div#sc-edprofile input[type="submit"] {
-  width: 100%;
-  background: #3399cc;
-  border: 0;
-  padding: 4%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 100%;
-  color: #fff;
-  cursor: pointer;
-  transition: background .3s;
-  -webkit-transition: background .3s;
-}
-
-div#sc-edprofile input[type="submit"]:hover {
-  background: #2288bb;
-}
-    </style>
-</head>
-
-<body>
-    <div id="sc-edprofile">
-  <h1>Edit Profile Form</h1>
-  <div class="sc-container">
-    <input type="text" placeholder="Username" />
-    <input type="text" placeholder="Email Address" />
-    <input type="password" placeholder="Password" />
-    <input type="text" placeholder="Website" />
-    <input type="text" placeholder="First Name" />
-    <input type="text" placeholder="Last Name" />
-    <textarea placeholder="Bio" /></textarea>
-    <select>
-      <option value="">Male</option>
-      <option value="">Female</option>
-    </select>
-    <input type="text" placeholder="Facebook Profile URL" />
-    <input type="text" placeholder="Twitter Profile URL" />
-    <input type="text" placeholder="Google+ Profile URL" />
-    <input type="text" placeholder="LinkedIn Profile URL" />
-    <input type="submit" value="Register" />
-  </div>
+<div class="container">
+    <div class="row">
+<form>
+  <label for="fname">user name:</label><br>
+  <input type="text" id="fname" name="fname" value="{{user.username}}"><br>
+  <label for="lname">email:</label><br>
+  <input type="email" id="email" name="email" value="{{user.email}}">
+   <label for="lname">mobile:</label><br>
+  <input type="text" id="mobile" name="mobile" value="{{user.mobile}}">
+  <button type="button" class="btn btn-primary">submit</button>
+</form>
+    </div>
 </div>
-</body>
-</html>
+        {{!-- <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </div>
+
+</div>
+</div>
+
+<script>
+    function removeAddress(firstName, streetAddress, phone) {
+        $.ajax({
+            url: '/removeAddress',
+            data: {
+                firstName: firstName,
+                streetAddress: streetAddress,
+                phone: phone
+            },
+            method: 'post',
+            success: (response) => {
+                if (response) {
+                    document.getElementById(firstName + streetAddress + phone).style.display = "none"
+                }
+            }
+        })
+    }
+</script>
+
+<script>
+    function changePhoto() {
+        console.log('uui')
+        $('#profilePhotoInput').click()
+        let result = document.querySelector('.result'),
+                save = document.querySelector('.save'),
+                cropped = document.querySelector('.profilePhoto'),
+                upload = document.querySelector('#profilePhotoInput'),
+                cropper = '';
+            upload.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    // start file reader
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        if (e.target.result) {
+                            // create new image
+                            $("#exampleModalCenter").modal("show");
+                            let img = document.createElement('img');
+                            img.id = 'image';
+                            img.src = e.target.result
+                            // clean result before
+                            result.innerHTML = '';
+                            // append new image
+                            result.appendChild(img);
+                            // init cropper
+                            cropper = new Cropper(img);
+                        }
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            save.addEventListener('click', (e) => {
+                e.preventDefault();
+                // get result to data uri
+                let imgSrc = cropper.getCroppedCanvas({
+                    width: 300 // img disp value
+                }).toDataURL();
+                $("#exampleModalCenter").modal("hide");
+                console.log('src', imgSrc)
+                cropped.src = imgSrc;
+                console.log('imagee', imgSrc)
+                $("#imageBase64Data").val(imgSrc);
+                var base = document.getElementById('imageBase64Data').value
+                console.log('kittiyeaa', base)
+            });        
+    }
+</script>
+
+<script>
+    function viewPhoto(event) {
+        document.getElementById('profilePhoto').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            
+            $('#not-img-error').hide()
+            $('#profilePhoto').show()
+        } else {
+            $('#not-img-error').show()
+            
+            $('#profilePhoto').hide()
+        }
+        var newPhoto = $('#profilePhotoInput').val()
+        console.log('dey..', newPhoto)
+        $.ajax({
+            url: '/changeProfilePhoto',
+            method: 'post',
+            data: {
+                profilePhoto: newPhoto
+            },
+            success: (response) => {
+                if (response) {
+                    alert('added')
+                }
+            }
+        })
+    }
+</script> --}}

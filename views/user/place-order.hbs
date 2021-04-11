@@ -1,300 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 
-    <script
-        src="https://www.paypal.com/sdk/js?client-id=AXCYt_xCh1RQeq3VBd79TVwRrn58jdYVaC2czZ3m_wRE5UhWdFx5agm7I_GS2x0ysPzryfeA9JQTCqu6&disable-funding=credit,card"></script>
-    <title>Document</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 
-        body {
-            background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');
-            font-family: 'Roboto Condensed', sans-serif;
-            color: #262626;
-            margin: 5% 0;
-        }
 
-        .container {
-            width: 100%;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-        }
 
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1140px;
-            }
-        }
 
-        .d-flex {
-            display: flex;
-            flex-direction: row;
-            background: #f6f6f6;
-            border-radius: 0 0 5px 5px;
-            padding: 25px;
-        }
 
-        form {
-            flex: 4;
-        }
 
-        .Yorder {
-            flex: 2;
-        }
-
-        .title {
-            background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #5195A8), color-stop(100, #70EAFF));
-            background: -moz-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-            background: -ms-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-            background: -o-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-            background: linear-gradient(to bottom right, #5195A8 0%, #70EAFF 100%);
-            border-radius: 5px 5px 0 0;
-            padding: 20px;
-            color: #f6f6f6;
-        }
-
-        h2 {
-            margin: 0;
-            padding-left: 15px;
-        }
-
-        .required {
-            color: red;
-        }
-
-        label,
-        table {
-            display: block;
-            margin: 15px;
-        }
-
-        label>span {
-            float: left;
-            width: 25%;
-            margin-top: 12px;
-            padding-right: 10px;
-        }
-
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        select {
-            width: 70%;
-            height: 30px;
-            padding: 5px 10px;
-            margin-bottom: 10px;
-            border: 1px solid #dadada;
-            color: #888;
-        }
-
-        select {
-            width: 72%;
-            height: 45px;
-            padding: 5px 10px;
-            margin-bottom: 10px;
-        }
-
-        .Yorder {
-            margin-top: 15px;
-            height: 600px;
-            padding: 20px;
-            border: 1px solid #dadada;
-        }
-
-        table {
-            margin: 0;
-            padding: 0;
-        }
-
-        th {
-            border-bottom: 1px solid #dadada;
-            padding: 10px 0;
-        }
-
-        tr>td:nth-child(1) {
-            text-align: left;
-            color: #2d2d2a;
-        }
-
-        tr>td:nth-child(2) {
-            text-align: right;
-            color: #52ad9c;
-        }
-
-        td {
-            border-bottom: 1px solid #dadada;
-            padding: 25px 25px 25px 0;
-        }
-
-        p {
-            display: block;
-            color: #888;
-            margin: 0;
-            padding-left: 25px;
-        }
-
-        .Yorder>div {
-            padding: 15px 0;
-        }
-
-        button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            border: none;
-            border-radius: 30px;
-            background: #52ad9c;
-            color: #fff;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        button:hover {
-            cursor: pointer;
-            background: #428a7d;
-        }
-    </style>
-</head>
-
-<body>
+<script
+        src="https://www.paypal.com/sdk/js?client-id=AXCYt_xCh1RQeq3VBd79TVwRrn58jdYVaC2czZ3m_wRE5UhWdFx5agm7I_GS2x0ysPzryfeA9JQTCqu6&disable-funding=credit,card"></script><section id="cart_items">
     <div class="container">
-        <div class="title">
-            <h2>Product Order Form</h2>
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Check out</li>
+            </ol>
         </div>
-        <div class="d-flex">
-            <form id="checkout-form">
-                <label>
-                    <span class="fname">First Name <span class="required">*</span></span>
-                    <input type="text" id="firstname" name="firstname">
-                </label>
-                <label>
-                    <span>Street Address <span class="required">*</span></span>
-                    <input type="text" id="address" name="address" placeholder="House number and street name" required>
-                </label>
-
-                <label>
-                    <span>Town / City <span class="required">*</span></span>
-                    <input type="text" id="city" name="city">
-                </label>
-                <label>
-                    <span>State / County <span class="required">*</span></span>
-                    <input type="text" id="state" name="state">
-                </label>
-                <label>
-                    <span>Postcode / ZIP <span class="required">*</span></span>
-                    <input type="text" id="pincode" name="pincode">
-                  
-                </label>
-                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
-                    <input type="number" id="total" name="total" value="{{total}}" hidden>
+        <!--/breadcrums-->
 
 
 
 
-                <div class="col-md-6">
-                    {{#each address}}
-                    <div>
-                        <h3>address</h3>
-                        <p>{{this.details.firstname}}<br>
-                            {{this.details.address}}<br>
-                            {{this.details.city}} <br>
-                            {{this.details.state}} <br>
-                            {{this.details.pincode}}</p>
-                        <button style="width:20em; background-color: #53ccee;" type="submit" onclick="Passaddress('{{this.details.firstname}}',
+        <div class=" clearfix">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="shopper-info">
+                        <p>DELIVERY ADDRESS</p>
+                        {{#each address}}
+                        <div>
+                            <h5>ADDRESS</h5>
+                            <p>{{this.details.firstname}}<br>
+                                {{this.details.address}}<br>
+                                {{this.details.city}} <br>
+                                {{this.details.state}} <br>
+                                {{this.details.pincode}}</p>
+                            <button style="width:20em; background-color: #fc9a1a;" type="submit" onclick="Passaddress('{{this.details.firstname}}',
                                     '{{this.details.address}}',
                                      '{{this.details.city}}',
                                       '{{this.details.state}}',
                                       '{{this.details.pincode}}')" class="btn btn-primary">
-                            use Adress</button>
+                                DELIVER HERE</button>
+                        </div>
+                        {{/each}}
+                        <a style="width: 28rem;" class="btn btn-primary float-right" href="/adress">ADD NEW
+                            ADDRESS</a>
                     </div>
-                    {{/each}}
                 </div>
-               
-
-
-                <div class="Yorder">
-
-
-
-                    <table>
-                        <tr>
-                            <th>
-                               
-                            </th>
-                            <th>
-                            <td>Total :</td>
-                            <td><span id="grandTotal">{{total}} </span></td>
-                            </th>
-                        </tr>
-
-                    </table><br>
-
-                    <div>
-                        <input type="radio" name="payment-method" value="COD" checked> COD
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="paypal" name="payment-method" type="radio" value="paypal"
-                            class="custom-control-input" required>PayPal
-                        <label class="custom-control-label" for="paypal"></label>
-                        <div id="paypal-payment-button"></div>
-                    </div>
-
-                    <div class="custom-control custom-radio">
-                        <input id="debit" name="payment-method" value="Razor_Pay" type="radio"
-                            class="custom-control-input" required>Razor Pay
-                        <label class="custom-control-label" for="debit"></label>
-                    </div>
-
-
-                    </span>
-                    <button style="width: 20rem;" type="submit" class="btn btn-info float-right">Submit</button>
-                    <a style="width: 20rem;" class="btn btn-info float-right" href="/adress">Add new
-                        address</a>
- </form>
-                </div>
-
-
- <div class="input-group" style="padding-top: 52%;">
+                <div class="col-sm-6 clearfix">
+                    <div class="bill-to">
+                        <p>APPLY COUPON</p>
+                        <div class="form-one">
+                            <div class="input-group">
 
                                     <input type="text" class="form-control" id="input-coupon" name="coupon"
                                         placeholder="Promo code">
+                                        <br>
+
                                     <div class="input-group-append">
                                         <button type="coupon" id="coupon-code" onclick="applyCoupons()"
                                             class="btn btn-secondary">Reedem code</button>
 
                                     </div>
-                                    <p id="success" style="display: none; color: red;"><strong>*suucess coupon
+                                    <p id="success" style="display: none; color: rgb(116, 255, 51);"><strong>*suucess
+                                            coupon
                                             applied</strong></p>
-                                    <p id="used" style="display: none; color: red;"><strong>*coupon is alreadey used
+                                    <p id="used" style="display: none; color: rgb(224, 157, 191);"><strong>*coupon is
+                                            alreadey used
                                             cannot apply</strong></p>
-                                    <p id="invalid" style="display: none; color: red;"><strong>*invalid coupon try the
+                                    <p id="invalid" style="display: none; color: rgb(165, 20, 20);"><strong>*invalid
+                                            coupon try the
                                             correct couopon code</strong></p>
                                 </div>
+                            <hr>
+                            <p>BILL TO </p>
+                            <form id="checkout-form">
+                                <input type="text" id="firstname" name="firstname" placeholder="First Name *" >
+                                <input type="text" id="address" name="address" placeholder="Address 1 *" >
+                                <input type="text" id="city" name="city" placeholder="City" >
+                                <input type="text" id="state" name="state" placeholder="State" required >
+                                <input  type="text" id="pincode" name="pincode" placeholder="Pincode" >
+                                <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+                                <input type="number" id="total" name="total" value="{{total}}" hidden>
+                                <table class="table table-condensed total-result">
 
+                                    <tr>
+                                        <td>Total</td>
+                                        <td><span id="grandTotal">{{total}} </span></td>
+                                    </tr>
+                                </table>
+                                <hr>
+                                
 
+                                <hr>
+                                <div>
+                                    <input type="radio" name="payment-method" value="COD" checked> COD
+                                </div>
+                               
 
-                {{!-- <a class="btn btn-info" href="">Place Order</button> --}}
+                                <div class="custom-control custom-radio">
+                                    <input id="debit" name="payment-method" value="Razor_Pay" type="radio"
+                                        class="custom-control-input" >Razor Pay
+                                    <label class="custom-control-label" for="debit" ></label>
+                                </div>
+                                
+                                 <div class="custom-control custom-radio">
+                                    <input id="paypal" name="payment-method" type="radio" value="paypal"
+                                        class="custom-control-input" >PayPal
+                                    <label class="custom-control-label" for="paypal"></label>
+                                   
+                                </div>
+                                  <div class="row">
+
+                                <div id="paypal-payment-button"></div>
+                                </div>
+                                <button style="width: 25rem;" type="submit"
+                                    class="btn btn-primary  float-right">Submit</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-   
+</section>
+<!--/#cart_items-->
 
 
 
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 
 
 
-    </div>
-</body>
 
 <script>
     function Passaddress(firstname, address, city, state, pincode) {
@@ -310,6 +149,43 @@
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+
+
+$("#checkout-form").submit(function(e) {
+    console.log("ffff")
+  
+  e.preventDefault()
+}).validate({
+          rules: {
+            firstname: {
+              required: true,
+              minlength: 3
+            },
+            address: {
+              required: true,
+             
+            },
+            city: {
+              required: true,
+              Number: true,
+              maxlength: 10
+            },
+            pincode: {
+              required: true,
+              minlength:4 
+            },
+            
+          
+          
+    
+   }
+});
+
+
+
+
+
+
     $("#checkout-form").submit((e) => {
         console.log("hiii")
         e.preventDefault()
@@ -325,6 +201,8 @@
                     console.log('hi')
                     paypal.Buttons({
                         createOrder: function (data, actions) {
+                            console.log("hloooo its working")
+
                             return actions.order.create({
                                 purchase_units: [{
                                     amount: {
@@ -338,7 +216,7 @@
                                 location.href = '/order-success'
                             })
                         }
-                    }).render('#paypal-payment-button');
+                    }).render("#paypal-payment-button")
                 }
 
                 else {
@@ -388,12 +266,12 @@
                 order
             },
             method: 'post',
-            success:(response)=>{
-                 if(response.status){
-                     location.href = '/order-success'
-                 }else{
-                     alert('Payment Failed ')
-                 }
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/order-success'
+                } else {
+                    alert('Payment Failed ')
+                }
             }
         })
     }
@@ -405,13 +283,13 @@
         let couponis = $("#input-coupon").val()
 
         $.ajax({
-            url: '/verifyCoupon',       
+            url: '/verifyCoupon',
             data: {
                 couponis
             },
             method: 'post',
             success: (response) => {
-                alert("lkfds")
+               
 
                 if (response.status == 0) {
 
@@ -443,9 +321,5 @@
 
     }
 
+
 </script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-</html>
