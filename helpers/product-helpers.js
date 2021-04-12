@@ -288,7 +288,7 @@ getOrderReport: () => {
 
         let graphData = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
             $match: {
-                status: "shippped"
+                status: "confirmed"
             }
         },
         {
@@ -317,12 +317,13 @@ getOrderReport: () => {
             date: [],
             total: []
         }
+        console.log("ttttttt",response);
         for (i = 0; i < graphData.length; i++) {
             response.date[i] = graphData[i]._id.month
             response.total[i] = graphData[i].total
         }
         resolve(response)
-   
+        console.log('jjjjjjjj',response);
 
     })
 },

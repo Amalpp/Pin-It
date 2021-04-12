@@ -410,7 +410,7 @@ module.exports = {
         console.log("user",user);
 
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.ADRESS_COLLECTION).insertOne({ details })
+            db.get().collection(collection.ADRESS_COLLECTION).insertOne({userid:user, details })
                 .then((data) => {
 
                     resolve(data.ops[0]._id);
@@ -422,11 +422,12 @@ module.exports = {
 
 
 
-    getAllAddress: (id) => {
+    getAllAddress: (user) => {
         return new Promise(async (resolve, reject) => {
-            let address = await db.get().collection(collection.ADRESS_COLLECTION).find().toArray();
+            let address = await db.get().collection(collection.ADRESS_COLLECTION).find({userid:user}).toArray();
 
             resolve(address);
+            console.log("hooooooo",address);
         });
     },
     placeOrder: (order, products, total) => {

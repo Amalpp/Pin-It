@@ -298,7 +298,9 @@ router.post('/change-product-quantity', (req, res, next) => {
 
 router.get('/place-order', verifyuser, async (req, res) => {
   var total = await userHelpers.getTotalAmount(req.session.user._id)
-  let address = await userHelpers.getAllAddress(req.session.user._id)
+  console.log("nioooooo",req.session.user._id);
+user=req.session.user._id
+  let address = await userHelpers.getAllAddress(user)
 
   let ses = req.session.loggedIn
   if (ses) {
@@ -459,10 +461,10 @@ router.get("/edit-profile",(req,res)=>{
   if(ses){
 
    let user= userHelpers.userDetailes(req.session.user._id).then(async(user)=>{
-     let id=req.session.user._id
+     let users=req.session.user._id
 
-     let address= await userHelpers.getAllAddress(id).then((address)=>{
-       console.log("ddddddddddd",address);
+     let address= await userHelpers.getuserAddress(users).then((userAdress)=>{
+       console.log("ddddddddddd",userAdress);
       res.render("user/edit-profile",{ses,user,address})
      })
    
@@ -503,7 +505,7 @@ router.post("/appy-coupon", async (req, res) => {
   let userId = req.session.user._id
 
 
-  let coupon = userHelpers.checkValidCoupon(req.body)
+  let coupon = userHelpers.checaddresskValidCoupon(req.body)
 
   if (coupon) {
     let discount = coupon.discount
