@@ -7,7 +7,7 @@ var session= require('express-session');
 var fileUpload=require('express-fileupload');
 var hbs=require('express-handlebars');
 var bodyParser=require('body-parser');
-const dotenv=require('dotenv')
+const dotenv=require('dotenv').config()
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
